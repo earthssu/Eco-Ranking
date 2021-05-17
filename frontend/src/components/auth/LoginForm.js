@@ -1,55 +1,66 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Form, Input } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import Button from '../common/Button';
+
+const LoginFormBlock = styled.div`
+  h3 {
+    margin: 0;
+    color: black;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+`;
+
+const StyledInput = styled.input`
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #8b8b8b;
+  padding-bottom: 0.5rem;
+  outline: none;
+  width: 100%;
+  &:focus {
+    color: $oc-teal-7;
+    border-bottom: 1px solid #525252;
+  }
+  & + & {
+    margin-top: 1rem;
+  }
+`;
+
+const Footer = styled.div`
+  margin-top: 2rem;
+  text-align: right;
+  a {
+    color: #868e96;
+    text-decoration: underline;
+    &:hover {
+      color: #212529;
+    }
+  }
+`;
+
+const ButtonWithMarginTop = styled(Button)`
+  margin-top: 1.5rem;
+`;
 
 const LoginForm = () => {
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
-
   return (
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Username!',
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
-        />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Password!',
-          },
-        ]}
-      >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
+    <LoginFormBlock>
+      <form>
+        <StyledInput autoComplete="userId" name="userId" placeholder="아이디" />
+        <StyledInput
+          autoComplete="password"
+          name="password"
+          placeholder="비밀번호"
           type="password"
-          placeholder="Password"
         />
-      </Form.Item>
-      <Form.Item>
+      </form>
+      <ButtonWithMarginTop fullWidth>로그인</ButtonWithMarginTop>
+      <Footer>
         <Link to="/register">회원가입</Link>
-      </Form.Item>
-    </Form>
+      </Footer>
+    </LoginFormBlock>
   );
 };
 

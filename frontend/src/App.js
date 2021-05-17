@@ -17,8 +17,8 @@ function App() {
       <Route component={LoginPage} path="/login" />
       <Route component={RegisterPage} path="/register" />
       <Route component={RankingPage} path="/ranking" />
-      <Route component={PollutionPage} path="/pollution" />
-      <Route component={AreaPollutionPage} path="/:area" />
+      <Route component={PollutionPage} path="/pollution" exact />
+      <Route component={AreaPollutionPage} path="/pollution/:area" />
       <Route component={WritePage} path="/write" />
       <Route component={CommunityPage} path="/community" />
     </>
