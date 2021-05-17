@@ -1,76 +1,102 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from '@ant-design/icons';
+import styled from 'styled-components';
+import Responsive from '../common/Responsive';
+import { Timeline } from 'antd';
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const ResponsiveCustom = styled(Responsive)`
+  display: flex;
+  justify-content: space-between;
+`;
+const SectionBlock = styled.div`
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 49%;
+  height: 600px;
+  align-items: center;
+  background: #fdffcd;
+  border-radius: 1rem 1rem;
+  border: 3px solid #626262;
+  h1 {
+    text-align: center;
+    font-weight: 800;
+  }
+`;
+
+const FirstSchoolBlock = styled.div`
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 80px 80px;
+  background: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 600;
+  .school-name {
+    display: inline-block;
+  }
+  .score {
+    float: right;
+  }
+`;
+
+const SecondSchoolBlock = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 80px 80px;
+  background: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  .school-name {
+    display: inline-block;
+  }
+  .score {
+    float: right;
+  }
+`;
+
+const ThirdSchoolBlock = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 80px 80px;
+  background: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  font-size: 1.3rem;
+  font-weight: 600;
+  .school-name {
+    display: inline-block;
+  }
+  .score {
+    float: right;
+  }
+`;
 
 const MainForm = () => {
   return (
-    <Layout>
-      <Header className="header">
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
-      </Header>
-      <Layout>
-        <Sider width={200} className="site-layout-background">
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{ height: '100%', borderRight: 0 }}
-          >
-            <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-              <Menu.Item key="1">option1</Menu.Item>
-              <Menu.Item key="2">option2</Menu.Item>
-              <Menu.Item key="3">option3</Menu.Item>
-              <Menu.Item key="4">option4</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-              <Menu.Item key="5">option5</Menu.Item>
-              <Menu.Item key="6">option6</Menu.Item>
-              <Menu.Item key="7">option7</Menu.Item>
-              <Menu.Item key="8">option8</Menu.Item>
-            </SubMenu>
-            <SubMenu
-              key="sub3"
-              icon={<NotificationOutlined />}
-              title="subnav 3"
-            >
-              <Menu.Item key="9">option9</Menu.Item>
-              <Menu.Item key="10">option10</Menu.Item>
-              <Menu.Item key="11">option11</Menu.Item>
-              <Menu.Item key="12">option12</Menu.Item>
-            </SubMenu>
-          </Menu>
-        </Sider>
-        <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
-          <Content
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-            }}
-          >
-            Content
-          </Content>
-        </Layout>
-      </Layout>
-    </Layout>
+    <>
+      <ResponsiveCustom>
+        <SectionBlock>
+          <h1>학교 랭킹 TOP 3</h1>
+          <FirstSchoolBlock>
+            <div className="school-name">강서구 초등학교</div>
+            <div className="score">80점</div>
+          </FirstSchoolBlock>
+          <SecondSchoolBlock>
+            <div className="school-name">강서구 초등학교</div>
+            <div className="score">80점</div>
+          </SecondSchoolBlock>
+          <ThirdSchoolBlock>
+            <div className="school-name">강서구 초등학교</div>
+            <div className="score">80점</div>
+          </ThirdSchoolBlock>
+        </SectionBlock>
+        <SectionBlock>
+          <h1>탄소 절감 방법</h1>
+        </SectionBlock>
+      </ResponsiveCustom>
+    </>
   );
 };
 
