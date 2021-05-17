@@ -14,6 +14,7 @@ const buttonStyle = css`
   background: #28691d;
   &:hover {
     background: #539f46;
+    color: white;
   }
   ${(props) =>
     props.fullWidth &&

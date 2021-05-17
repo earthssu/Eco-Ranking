@@ -1,7 +1,13 @@
 import React from 'react';
+import Header from '../components/common/Header';
+import MainForm from '../components/MainForm';
 
 const MainPage = () => {
-  return <div>메인 페이지</div>;
+  return (
+    <>
+      <MainForm />
+    </>
+  );
 };
 
 export default MainPage;
