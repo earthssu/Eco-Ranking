@@ -5,10 +5,10 @@ import Responsive from '../common/Responsive';
 const ResponsiveCustom = styled(Responsive)`
   display: flex;
   justify-content: space-between;
+  margin-top: 3.5rem;
 `;
 
 const SectionBlock = styled.div`
-  margin-top: 3.5rem;
   padding: 1rem;
   width: 50%;
   align-items: center;
@@ -49,7 +49,7 @@ const GroupBlock = styled.div`
   }
 `;
 
-const MainForm = () => {
+const RankingForm = () => {
   const schoolList = [
     '하양초등학교',
     '하양여자중학교',
@@ -92,4 +92,4 @@ const MainForm = () => {
   );
 };
 
-export default MainForm;
+export default RankingForm;

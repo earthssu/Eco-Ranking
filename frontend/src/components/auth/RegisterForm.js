@@ -73,8 +73,8 @@ const RegisterForm = () => {
           placeholder="지역"
         />
         <StyledInput autoComplete="school" name="school" placeholder="학교" />
+        <ButtonWithMarginTop fullWidth>회원가입</ButtonWithMarginTop>
       </form>
-      <ButtonWithMarginTop fullWidth>회원가입</ButtonWithMarginTop>
       <Footer>
         <Link to="/login">로그인</Link>
       </Footer>

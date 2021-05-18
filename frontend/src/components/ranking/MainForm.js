@@ -6,10 +6,10 @@ import { BulbOutlined } from '@ant-design/icons';
 const ResponsiveCustom = styled(Responsive)`
   display: flex;
   justify-content: space-between;
+  margin-top: 3.5rem;
 `;
 
 const SectionBlock = styled.div`
-  margin-top: 3.5rem;
   padding: 1rem;
   width: 50%;
   align-items: center;

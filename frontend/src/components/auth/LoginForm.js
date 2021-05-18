@@ -55,8 +55,8 @@ const LoginForm = () => {
           placeholder="비밀번호"
           type="password"
         />
+        <ButtonWithMarginTop fullWidth>로그인</ButtonWithMarginTop>
       </form>
-      <ButtonWithMarginTop fullWidth>로그인</ButtonWithMarginTop>
       <Footer>
         <Link to="/register">회원가입</Link>
       </Footer>

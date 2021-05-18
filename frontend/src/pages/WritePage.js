@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../components/common/Header';
+import WriteForm from '../components/users/WriteForm';
 
 const WritePage = () => {
   return (
     <>
-      <Header /> <div>보호 기록 등록 페이지</div>
+      <Header />
+      <WriteForm />
     </>
   );
 };
