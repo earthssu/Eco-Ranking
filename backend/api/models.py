@@ -12,18 +12,30 @@ class Base(models.Model):
 
 class School(Base):
     name = models.CharField(max_length=20)
-    score = models.IntegerField(default=0)
+    # score = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
+
+    def studentsScoreSum(self):
+        score = 0
+        for i in range(0, self.students.all().count()):
+            score += self.students.all()[i].score()
+        return score
 
 
 class Area(Base):
     name = models.CharField(max_length=10)
-    score = models.IntegerField(default=0)
+    # score = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
+
+    def usersScoreSum(self):
+        score = 0
+        for i in range(0, self.users.all().count()):
+            score += self.users.all()[i].score()
+        return score
 
 
 class Profile(Base):
@@ -31,10 +43,13 @@ class Profile(Base):
     nickname = models.CharField(max_length=50, unique=True)
     school = models.ForeignKey(School, null=True, related_name='students', on_delete=models.SET_NULL)
     area = models.ForeignKey(Area, related_name='users', on_delete=models.CASCADE)
-    score = models.IntegerField(default=0)
+    # score = models.IntegerField(default=0)
 
     def __str__(self):
         return self.nickname
+    
+    def score(self):
+        return self.posts.values().count() * 10
 
 
 class Post(Base):
