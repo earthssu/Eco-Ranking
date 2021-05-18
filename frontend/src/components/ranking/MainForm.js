@@ -1,33 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
-import { Timeline } from 'antd';
+import { BulbOutlined } from '@ant-design/icons';
 
 const ResponsiveCustom = styled(Responsive)`
   display: flex;
   justify-content: space-between;
 `;
+
 const SectionBlock = styled.div`
-  margin-top: 1rem;
+  margin-top: 3.5rem;
   padding: 1rem;
-  width: 49%;
-  height: 600px;
+  width: 50%;
   align-items: center;
-  background: #fdffcd;
-  border-radius: 1rem 1rem;
-  border: 3px solid #626262;
+  background: white;
   h1 {
     text-align: center;
     font-weight: 800;
+    color: #156048;
   }
 `;
 
 const FirstSchoolBlock = styled.div`
-  margin-top: 4rem;
+  margin-top: 3rem;
   margin-bottom: 0.5rem;
   padding: 1.5rem;
   border-radius: 80px 80px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 108, 84, 0.7);
   width: 100%;
   font-size: 2rem;
   font-weight: 600;
@@ -44,7 +43,7 @@ const SecondSchoolBlock = styled.div`
   margin-bottom: 0.5rem;
   padding: 1.5rem;
   border-radius: 80px 80px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 186, 145, 0.7);
   width: 100%;
   font-size: 1.6rem;
   font-weight: 600;
@@ -61,7 +60,7 @@ const ThirdSchoolBlock = styled.div`
   margin-bottom: 0.5rem;
   padding: 1.5rem;
   border-radius: 80px 80px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 186, 145, 0.4);
   width: 100%;
   font-size: 1.3rem;
   font-weight: 600;
@@ -73,6 +72,25 @@ const ThirdSchoolBlock = styled.div`
   }
 `;
 
+const RecommendBlock = styled.div`
+  margin-top: 3rem;
+  width: 100%;
+  height: 75%;
+  padding: 2.5rem;
+  border-radius: 50px 50px;
+  background: #ffffd9;
+  font-size: 1.4rem;
+  font-weight: 600;x
+`;
+
+const CustomBulb = styled(BulbOutlined)`
+  color: #ffb23c;
+  margin-right: 0.5rem;
+`;
+
+const RecommendListBlock = styled.div`
+  margin-bottom: 1rem;
+`;
 const MainForm = () => {
   return (
     <>
@@ -93,7 +111,25 @@ const MainForm = () => {
           </ThirdSchoolBlock>
         </SectionBlock>
         <SectionBlock>
-          <h1>탄소 절감 방법</h1>
+          <h1>Tip! 탄소 절감하는 방법</h1>
+          <RecommendBlock>
+            <RecommendListBlock>
+              <CustomBulb />
+              <span>대중교통 이용하기</span>
+            </RecommendListBlock>
+            <RecommendListBlock>
+              <CustomBulb />
+              <span>일회용품 줄이기</span>
+            </RecommendListBlock>
+            <RecommendListBlock>
+              <CustomBulb />
+              <span>냉난방 적정 온도로 설정하기</span>
+            </RecommendListBlock>
+            <RecommendListBlock>
+              <CustomBulb />
+              <span>친환경 소재 제품 사용하기</span>
+            </RecommendListBlock>
+          </RecommendBlock>
         </SectionBlock>
       </ResponsiveCustom>
     </>

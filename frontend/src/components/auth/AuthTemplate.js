@@ -8,7 +8,7 @@ const AuthTemplateBlock = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  background: #83c278;
+  background: #58887D;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +34,7 @@ const AuthTemplate = ({ children }) => {
     <AuthTemplateBlock>
       <WhiteBox>
         <div className="logo-area">
-          <Link to="/" style={{ color: 'black' }}>
+          <Link to="/" style={{ color: '#237361' }}>
             ECO RANKING
           </Link>
         </div>

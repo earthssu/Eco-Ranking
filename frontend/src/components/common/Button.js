@@ -11,9 +11,9 @@ const buttonStyle = css`
   color: white;
   outline: none;
   cursor: pointer;
-  background: #28691d;
+  background: #2F9780;
   &:hover {
-    background: #539f46;
+    background: #3CBEA1;
     color: white;
   }
   ${(props) =>
@@ -21,17 +21,9 @@ const buttonStyle = css`
     css`
       padding-top: 0.75rem;
       padding-bottom: 0.75rem;
-      width: 100%;
+      width: 100%;s
       font-size: 1.125rem;
-    `}
-  ${(props) =>
-    props.cyan &&
-    css`
-      background: #28691d;
-      &:hover {
-        background: #539f46;
-      }
-    `}
+    `}s
 `;
 
 const StyledButton = styled.button`

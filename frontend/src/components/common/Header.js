@@ -7,7 +7,8 @@ import Button from './Button';
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
-  background: #83c278;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
 `;
 
 const Wrapper = styled(Responsive)`
@@ -22,6 +23,7 @@ const Wrapper = styled(Responsive)`
     color: black;
     display: flex;
     align-items: left;
+    color: #237361;
   }
   .right {
     display: flex;
@@ -37,13 +39,13 @@ const Category = styled(NavLink)`
   color: inherit;
   padding-bottom: 0.25rem;
   &:hover {
-    color: #c8ffc5;
+    color: #878787;
   }
   &.active {
     font-weight: 600;
-    color: #f9ff9b;
+    color: #2F9780;
     &:hover {
-      color: #fcffc8;
+      color: #3CBEA1;
     }
   }
   & + & {

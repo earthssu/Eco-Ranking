@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../components/common/Header';
+import RankingForm from '../components/ranking/RankingForm';
 
 const RankingPage = () => {
   return (
     <>
       <Header />
-      <div>학교, 지역 순위 페이지</div>
+      <RankingForm />
     </>
   );
 };
