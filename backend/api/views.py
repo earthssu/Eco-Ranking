@@ -1,8 +1,9 @@
 from datetime import date, timedelta
 import json
 import urllib
+from django.views.decorators.csrf import csrf_exempt
 from pandas.io.json import json_normalize
-from django.http import Http404
+from django.http import Http404, JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -98,15 +99,47 @@ class PollutionList(APIView):
         return Response(gu_score)
 
 
+# class SchoolRankList(APIView):
+#     def get(self, request):
+#         school = School.objects.all()
+#         students = Profile.objects.all()
+#         score = 0
+#         for i in range(0, Profile.objects.values().count()):
+#             if students[i].school.name == school[i].name:
+#                 school[i].score += students[i].score()
+#                 print(school[i].score)
+#                 return Response(school[i].score)
+
+
 class SchoolRankList(APIView):
     def get(self, request):
-        school = School.objects.all()
-        students = Profile.objects.all()
-        score = 0
-        for i in range(0, Profile.objects.values().count()):
-            if students[i].school.name == school[i].name:
-                school[i].score += students[i].score()
-                print(school[i].score)
-                return Response(school[i].score)
+        score_list = [5]
+        school_list = [5]
+        del score_list[0]
+        del school_list[0]
+        dic = {}
+        for i in range(0, School.objects.all().count()):
+            school_list.append(School.objects.all()[i].name)
+            score_list.append(School.objects.all()[i].studentsScoreSum())
+            dic = {name: value for name, value in zip(school_list, score_list)}
+        dic = sorted(dic.items(), key=lambda x: x[1], reverse=True)
+        # print(dic)
+        # print(dic[0])
+        return Response(dic)
 
-# School.objects.all()[0].students.all()[0].score()
+
+class AreaRankList(APIView):
+    def get(self, request):
+        score_list = [5]
+        area_list = [5]
+        del score_list[0]
+        del area_list[0]
+        dic = {}
+        for i in range(0, Area.objects.all().count()):
+            area_list.append(Area.objects.all()[i].name)
+            score_list.append(Area.objects.all()[i].usersScoreSum())
+            dic = {name: value for name, value in zip(area_list, score_list)}
+        dic = sorted(dic.items(), key=lambda x: x[1], reverse=True)
+        # print(dic)
+        # print(dic[0])
+        return Response(dic)

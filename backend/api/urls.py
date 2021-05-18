@@ -12,5 +12,6 @@ urlpatterns = [
     # path('users/<int:pk>/posts/<int:post_pk>', views.ProfilePostDetail.as_view()),
     path('', include(router.urls)),
     path('pollution/', views.PollutionList.as_view()),
-    path('rank/schools', views.SchoolRankList.as_view())
+    path('rank/schools', views.SchoolRankList.as_view()),
+    path('rank/area', views.AreaRankList.as_view())
 ]
