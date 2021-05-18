@@ -7,7 +7,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class SchoolAdmin(admin.ModelAdmin):
-    list_display = ['name', 'studentsScoreSum']
+    list_display = ['name', 'area', 'studentsScoreSum']
 
 
 class AreaAdmin(admin.ModelAdmin):

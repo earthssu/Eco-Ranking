@@ -74,29 +74,48 @@ class DataList(APIView):
         return Response(df)
 
 
+# class PollutionList(APIView):
+#     def get(self, request):
+#         gu_name_list = Area.objects.values_list('name', flat=True)
+#         gu = []
+#         pm10 = []
+#         pm25 = []
+#         o3 = []
+#         no2 = []
+#         co = []
+#         so2 = []
+#         gu_score = []
+#         for i in range(0, 25):
+#             gu = gu_name_list[i]
+#             # if gu[i] == df['MSRSTE_NM'][i]:
+#             pm10 = round(int(df['PM10'][i]), -1)
+#             pm25 = round(int(df['PM25'][i]), -1)
+#             o3 = round(int(df['O3'][i] * 1000), -1)
+#             no2 = round(int(df['NO2'][i] * 1000), -1)
+#             co = int(df['CO'][i] * 100)
+#             so2 = int(df['SO2'][i] * 10000)
+#             gu_score = int((pm10 + pm25 + o3 + no2 + co + so2) / 10)
+#             print(pm10, pm25, o3, no2, co, so2, gu_score)
+#         return Response(gu_score)
+
+# 딕셔너리
 class PollutionList(APIView):
     def get(self, request):
-        gu_name_list = Area.objects.values_list('name', flat=True)
-        gu = []
-        pm10 = []
-        pm25 = []
-        o3 = []
-        no2 = []
-        co = []
-        so2 = []
-        gu_score = []
+        # gu_name_list = Area.objects.values_list('name', flat=True)
+        gu, pm10, pm25, o3, no2, co, so2, gu_score = [], [], [], [], [], [], [], []
+        dic = {}
         for i in range(0, 25):
-            gu = gu_name_list[i]
-            # if gu[i] == df['MSRSTE_NM'][i]:
-            pm10 = round(int(df['PM10'][i]), -1)
-            pm25 = round(int(df['PM25'][i]), -1)
-            o3 = round(int(df['O3'][i] * 1000), -1)
-            no2 = round(int(df['NO2'][i] * 1000), -1)
-            co = int(df['CO'][i] * 100)
-            so2 = int(df['SO2'][i] * 10000)
-            gu_score = int((pm10 + pm25 + o3 + no2 + co + so2) / 10)
-            print(pm10, pm25, o3, no2, co, so2, gu_score)
-        return Response(gu_score)
+            gu.append(Area.objects.all()[i].name)
+            pm10.append(round(int(df['PM10'][i]), -1))
+            pm25.append(round(int(df['PM25'][i]), -1))
+            o3.append(round(int(df['O3'][i] * 1000), -1))
+            no2.append(round(int(df['NO2'][i] * 1000), -1))
+            co.append(int(df['CO'][i] * 100))
+            so2.append(int(df['SO2'][i] * 10000))
+            gu_score.append(int((pm10[i] + pm25[i] + o3[i] + no2[i] + co[i] + so2[i]) / 10))
+            dic = {name: value for name, value in zip(gu, gu_score)}
+        print(list(dic.keys())[0])
+        return Response(dic)
 
 
 # class SchoolRankList(APIView):
@@ -111,15 +130,14 @@ class PollutionList(APIView):
 #                 return Response(school[i].score)
 
 
+# 리스트
 class SchoolRankList(APIView):
     def get(self, request):
-        score_list = [5]
-        school_list = [5]
-        del score_list[0]
-        del school_list[0]
+        score_list, school_list, area_list = [], [], []
         dic = {}
         for i in range(0, School.objects.all().count()):
             school_list.append(School.objects.all()[i].name)
+            area_list.append(School.objects.all()[i].area)
             score_list.append(School.objects.all()[i].studentsScoreSum())
             dic = {name: value for name, value in zip(school_list, score_list)}
         dic = sorted(dic.items(), key=lambda x: x[1], reverse=True)
@@ -130,16 +148,30 @@ class SchoolRankList(APIView):
 
 class AreaRankList(APIView):
     def get(self, request):
-        score_list = [5]
-        area_list = [5]
-        del score_list[0]
-        del area_list[0]
-        dic = {}
+        score_list, area_list = [], []
+        dic, dic2 = {}, {}
         for i in range(0, Area.objects.all().count()):
             area_list.append(Area.objects.all()[i].name)
             score_list.append(Area.objects.all()[i].usersScoreSum())
             dic = {name: value for name, value in zip(area_list, score_list)}
         dic = sorted(dic.items(), key=lambda x: x[1], reverse=True)
-        # print(dic)
-        # print(dic[0])
+
+        gu, pm10, pm25, o3, no2, co, so2, gu_score, final_score = [], [], [], [], [], [], [], [], []
+
+        for i in range(0, 25):
+            gu.append(Area.objects.all()[i].name)
+            pm10.append(round(int(df['PM10'][i]), -1))
+            pm25.append(round(int(df['PM25'][i]), -1))
+            o3.append(round(int(df['O3'][i] * 1000), -1))
+            no2.append(round(int(df['NO2'][i] * 1000), -1))
+            co.append(int(df['CO'][i] * 100))
+            so2.append(int(df['SO2'][i] * 10000))
+            gu_score.append(int((pm10[i] + pm25[i] + o3[i] + no2[i] + co[i] + so2[i]) / 10))
+            dic2 = {name: value for name, value in zip(gu, gu_score)}
+
+        for i in range(0, 25):
+            for j in range(0, 25):
+                if dic[i][0] == list(dic2.keys())[j]:
+                    final_score.append(Area.objects.all()[i].usersScoreSum() - list(dic2.values())[i])
+        dic = {name: value for name, value in zip(area_list, final_score)}
         return Response(dic)

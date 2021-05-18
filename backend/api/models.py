@@ -10,20 +10,6 @@ class Base(models.Model):
         abstract = True
 
 
-class School(Base):
-    name = models.CharField(max_length=20)
-    # score = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.name
-
-    def studentsScoreSum(self):
-        score = 0
-        for i in range(0, self.students.all().count()):
-            score += self.students.all()[i].score()
-        return score
-
-
 class Area(Base):
     name = models.CharField(max_length=10)
     # score = models.IntegerField(default=0)
@@ -35,6 +21,21 @@ class Area(Base):
         score = 0
         for i in range(0, self.users.all().count()):
             score += self.users.all()[i].score()
+        return score
+
+
+class School(Base):
+    name = models.CharField(max_length=20)
+    area = models.ForeignKey(Area, related_name='schools', null=True, on_delete=models.SET_NULL)
+    # score = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+    def studentsScoreSum(self):
+        score = 0
+        for i in range(0, self.students.all().count()):
+            score += self.students.all()[i].score()
         return score
 
 
