@@ -1,8 +1,3 @@
-from datetime import date, timedelta
-import json
-import urllib
-from django.views.decorators.csrf import csrf_exempt
-from pandas.io.json import json_normalize
 from django.http import Http404, JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
@@ -13,32 +8,6 @@ from .serializers import *
 from django_filters import rest_framework as filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
-
-yesterday = date.today() - timedelta(1)
-date = yesterday.strftime("%Y%m%d")
-
-url = 'http://openapi.seoul.go.kr:8088/4b744e724f6a756c37387a416c5149/json/DailyAverageCityAir/1/25/{}'.format(date)
-response = urllib.request.urlopen(url)
-json_str = response.read().decode("utf-8")
-json_object = json.loads(json_str)
-df = json_normalize(json_object['DailyAverageCityAir']['row'])
-
-
-# 지역 오염도 계산해서 리스트로 반환 ex) ["중구", 18]
-def pollutionLevel():
-    gu, pm10, pm25, o3, no2, co, so2, gu_score, dic = [], [], [], [], [], [], [], [], []
-    for i in range(0, 25):
-        gu.append(Area.objects.all()[i].name)
-        pm10.append(round(int(df['PM10'][i]), -1))
-        pm25.append(round(int(df['PM25'][i]), -1))
-        o3.append(round(int(df['O3'][i] * 1000), -1))
-        no2.append(round(int(df['NO2'][i] * 1000), -1))
-        co.append(int(df['CO'][i] * 100))
-        so2.append(int(df['SO2'][i] * 10000))
-        gu_score.append(int((pm10[i] + pm25[i] + o3[i] + no2[i] + co[i] + so2[i]) / 10))
-        dic = list(zip(gu, gu_score))
-    return dic
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -93,9 +62,32 @@ class DataList(APIView):
 # 딕셔너리
 class PollutionList(APIView):
     def get(self, request):
-        # gu_name_list = Area.objects.values_list('name', flat=True)
-        dic = pollutionLevel()
+        gu, pm10, pm25, o3, no2, co, so2, gu_score, dic = [], [], [], [], [], [], [], [], []
+        for i in range(0, 25):
+            gu.append(Area.objects.all()[i].name)
+            pm10.append(df['PM10'][i])
+            pm25.append(df['PM25'][i])
+            o3.append(df['O3'][i])
+            no2.append(df['NO2'][i])
+            co.append(df['CO'][i])
+            so2.append(df['SO2'][i])
+            dic = list(zip(gu, pm10, pm25, o3, no2, co, so2))
         return Response(dic)
+
+
+class PollutionDetail(APIView):
+    def get(self, request, pk):
+        gu, pm10, pm25, o3, no2, co, so2, gu_score, dic = [], [], [], [], [], [], [], [], []
+        for i in range(0, 25):
+            gu.append(Area.objects.all()[i].name)
+            pm10.append(df['PM10'][i])
+            pm25.append(df['PM25'][i])
+            o3.append(df['O3'][i])
+            no2.append(df['NO2'][i])
+            co.append(df['CO'][i])
+            so2.append(df['SO2'][i])
+            dic = list(zip(gu, pm10, pm25, o3, no2, co, so2))
+        return Response(dic[pk-1])
 
 
 # 리스트

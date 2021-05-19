@@ -6,14 +6,14 @@ class SchoolSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = School
-        fields = ['name', 'score']
+        fields = ['name', 'area', 'studentsScoreSum', 'pollution', 'finalScore']
 
 
 class AreaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Area
-        fields = ['name', 'score']
+        fields = ['name', 'usersScoreSum', 'pollution', 'finalScore']
 
 
 class LikeSerializer(serializers.ModelSerializer):

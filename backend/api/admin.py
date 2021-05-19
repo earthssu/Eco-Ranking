@@ -7,11 +7,11 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class SchoolAdmin(admin.ModelAdmin):
-    list_display = ['name', 'area', 'studentsScoreSum']
+    list_display = ['name', 'area', 'studentsScoreSum', 'pollution', 'finalScore']
 
 
 class AreaAdmin(admin.ModelAdmin):
-    list_display = ['name', 'usersScoreSum']
+    list_display = ['name', 'usersScoreSum', 'pollution', 'finalScore']
 
 
 admin.site.register(Profile, ProfileAdmin)
