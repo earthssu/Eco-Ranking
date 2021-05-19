@@ -13,7 +13,6 @@ urlpatterns = [
     # path('users/<int:pk>/posts/<int:post_pk>', views.ProfilePostDetail.as_view()),
     path('', include(router.urls)),
     path('auth/', obtain_auth_token),
-    path('auth/register', views.RegisterView.as_view()),
     path('data/', views.DataList.as_view()),
     path('pollution/', views.PollutionList.as_view()),
     path('pollution/<int:pk>', views.PollutionDetail.as_view()),
