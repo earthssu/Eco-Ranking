@@ -32,16 +32,36 @@ const ButtonWithMarginTop = styled(Button)`
 `;
 
 const PostsBlock = styled.div`
-width: 100%;
-margin-top: 1.5rem;
-padding: 1rem;
-height: 300px;
-overflow: auto;
-background: #E8F8F5;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  height: 300px;
+  overflow: auto;
+  background: #e8f8f5;
 `;
 
 const PostBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  span {
+    display: inline-block;
+    width: 200px;
+  }
+  .date {
+    width: 100px;
+  }
+  .keyword {
+    width: 100px;
+    font-weight: 700;
+  }
+  .comment {
+    color: #676767;
+  }
+`;
 
+const ButtonCustom = styled(Button)`
+  font-size: 0.7rem;
 `;
 
 const WriteForm = () => {
@@ -52,7 +72,11 @@ const WriteForm = () => {
         <WriteBlock>
           <form>
             <SelectBlock>
-              <Select size="large" defaultValue="키워드 선택" style={{ width: 200 }}>
+              <Select
+                size="large"
+                defaultValue="키워드 선택"
+                style={{ width: 200 }}
+              >
                 <Option key="transport">대중교통 이용</Option>
                 <Option key="ecoProducts">친환경 제품 사용</Option>
                 <Option key="wasteSorting">분리수거</Option>
@@ -65,12 +89,18 @@ const WriteForm = () => {
           </form>
         </WriteBlock>
         <PostsBlock>
-            <PostBlock>
-                <span>2020.05.18</span>
-                <span>대중교통 이용</span>
-                <span>버스를 타고 등교함</span>
-                <button>삭제</button>
-            </PostBlock>
+          <PostBlock>
+            <span className="date">2020.05.18</span>
+            <span className="keyword">대중교통 이용</span>
+            <span className="comment">버스를 타고 등교함</span>
+            <ButtonCustom red>삭제</ButtonCustom>
+          </PostBlock>
+          <PostBlock>
+            <span className="date">2020.05.18</span>
+            <span className="keyword">분리수거</span>
+            <span className="comment">아파트 분리수거장에서 분리수거함</span>
+            <ButtonCustom red>삭제</ButtonCustom>
+          </PostBlock>
         </PostsBlock>
       </ResponsiveCustom>
     </>
