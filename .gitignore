@@ -175,4 +175,7 @@ psd
 thumb
 sketch
 
+.vscode
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/django,react
