@@ -1,5 +1,7 @@
+from django.db import transaction
 from rest_framework import serializers
 from .models import School, Area, Profile, Post, Like
+from dj_rest_auth.registration.serializers import RegisterSerializer
 
 
 class SchoolSerializer(serializers.ModelSerializer):
@@ -40,3 +42,20 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user', 'nickname', 'school', 'area', 'score', 'likes']
+
+
+class CustomRegisterSerializer(RegisterSerializer):
+    school = serializers.ChoiceField(choices=School.objects.all())
+    area = serializers.ChoiceField(choices=Area.objects.all())
+    nickname = serializers.CharField(max_length=50)
+
+    @transaction.atomic
+    def save(self, request):
+        user = super().save(request)
+        school = self.data.get('school')
+        area = self.data.get('area')
+        nickname = self.data.get('nickname')
+        profile = Profile(user=user, nickname=nickname, school=school, area=area)
+        user.save()
+        profile.save()
+        return user
