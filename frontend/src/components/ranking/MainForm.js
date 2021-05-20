@@ -99,16 +99,16 @@ const MainForm = ({ school, schoolError, schoolLoading }) => {
         {!schoolLoading && school && (
           <SectionBlock>
             <FirstSchoolBlock>
-              <div className="school-name">{school[0].schoolname}</div>
-              <div className="score">{school[0].score}점</div>
+              <div className="school-name">{school[0][0]}</div>
+              <div className="score">{school[0][1]}점</div>
             </FirstSchoolBlock>
             <SecondSchoolBlock>
-              <div className="school-name">{school[1].schoolname}</div>
-              <div className="score">{school[1].score}점</div>
+              <div className="school-name">{school[1][0]}</div>
+              <div className="score">{school[1][1]}점</div>
             </SecondSchoolBlock>
             <ThirdSchoolBlock>
-              <div className="school-name">{school[2].schoolname}</div>
-              <div className="score">{school[2].score}점</div>
+              <div className="school-name">{school[2][0]}</div>
+              <div className="score">{school[2][1]}점</div>
             </ThirdSchoolBlock>
           </SectionBlock>
         )}

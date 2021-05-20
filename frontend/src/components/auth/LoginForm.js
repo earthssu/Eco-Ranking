@@ -49,11 +49,11 @@ const LoginForm = ({ form, onChange, onSubmit }) => {
     <LoginFormBlock>
       <form onSubmit={onSubmit}>
         <StyledInput
-          autoComplete="userId"
-          name="userId"
-          placeholder="아이디"
+          autoComplete="username"
+          name="username"
+          placeholder="회원 이름"
           onChange={onChange}
-          value={form.userId}
+          value={form.username}
         />
         <StyledInput
           autoComplete="password"

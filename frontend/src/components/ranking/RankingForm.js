@@ -49,8 +49,9 @@ const GroupBlock = styled.div`
   }
 `;
 
-const RankItem = ({ item }) => {
-  const { rank, name, score } = item;
+const RankItem = ({ rank, item }) => {
+  const name = item[0];
+  const score = item[1];
   return (
     <GroupBlock>
       <span>{rank}</span>
@@ -74,6 +75,7 @@ const RankingForm = ({
   if (areaError) {
     return <div>지역 순위에서 에러가 발생했습니다!</div>;
   }
+
   return (
     <>
       <ResponsiveCustom>
@@ -81,8 +83,8 @@ const RankingForm = ({
           <h1>학교별 순위</h1>
           {!schoolLoading && school && (
             <RankingBlock>
-              {school.map((item) => (
-                <RankItem item={item} />
+              {school.map((item, rank) => (
+                <RankItem rank={rank + 1} item={item} />
               ))}
             </RankingBlock>
           )}
@@ -91,8 +93,8 @@ const RankingForm = ({
           <h1>지역별 순위</h1>
           {!areaLoading && area && (
             <RankingBlock>
-              {area.map((item) => (
-                <RankItem item={item} />
+              {area.map((item, rank) => (
+                <RankItem rank={rank + 1} item={item} />
               ))}
             </RankingBlock>
           )}

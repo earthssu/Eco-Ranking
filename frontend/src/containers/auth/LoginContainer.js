@@ -27,8 +27,8 @@ const LoginContainer = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { userId, password } = form;
-    dispatch(login({ userId, password }));
+    const { username, password } = form;
+    dispatch(login({ username, password }));
   };
 
   useEffect(() => {
@@ -50,6 +50,11 @@ const LoginContainer = ({ history }) => {
   useEffect(() => {
     if (user) {
       history.push('/');
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localstroage is not working');
+      }
     }
   }, [history, user]);
 
