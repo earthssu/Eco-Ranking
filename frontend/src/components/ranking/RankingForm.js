@@ -49,43 +49,53 @@ const GroupBlock = styled.div`
   }
 `;
 
-const RankingForm = () => {
-  const schoolList = [
-    '하양초등학교',
-    '하양여자중학교',
-    '서울초등학교',
-    '영일초등학교',
-    '영일중학교',
-    '공주중학교',
-    '한사유치원',
-    '예술고등학교'
-  ];
-  let rank = 1;
-  
+const RankItem = ({ item }) => {
+  const { rank, name, score } = item;
+  return (
+    <GroupBlock>
+      <span>{rank}</span>
+      <div className="name">{name}</div>
+      <div className="score">{score}</div>
+    </GroupBlock>
+  );
+};
+
+const RankingForm = ({
+  school,
+  area,
+  schoolError,
+  areaError,
+  schoolLoading,
+  areaLoading,
+}) => {
+  if (schoolError) {
+    return <div>학교 순위에서 에러가 발생했습니다!</div>;
+  }
+  if (areaError) {
+    return <div>지역 순위에서 에러가 발생했습니다!</div>;
+  }
   return (
     <>
       <ResponsiveCustom>
         <SectionBlock>
           <h1>학교별 순위</h1>
-          <RankingBlock>
-            {schoolList.map(school => (
-              <GroupBlock>
-                <span>{rank}</span>
-                <div className="name">{school}</div>
-                <div className="score">100</div>
-              </GroupBlock>
-            ))}
-          </RankingBlock>
+          {!schoolLoading && school && (
+            <RankingBlock>
+              {school.map((item) => (
+                <RankItem item={item} />
+              ))}
+            </RankingBlock>
+          )}
         </SectionBlock>
         <SectionBlock>
           <h1>지역별 순위</h1>
-          <RankingBlock>
-            <GroupBlock>
-              <span>1</span>
-              <div className="name">강남구</div>
-              <div className="score">100점</div>
-            </GroupBlock>
-          </RankingBlock>
+          {!areaLoading && area && (
+            <RankingBlock>
+              {area.map((item) => (
+                <RankItem item={item} />
+              ))}
+            </RankingBlock>
+          )}
         </SectionBlock>
       </ResponsiveCustom>
     </>

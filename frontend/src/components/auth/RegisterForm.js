@@ -83,7 +83,7 @@ const RegisterForm = ({ form, onChange, onSubmit }) => {
           autoComplete="area"
           name="area"
           placeholder="지역"
-          onchange={onChange}
+          onChange={onChange}
           value={form.area}
         />
         <StyledInput
