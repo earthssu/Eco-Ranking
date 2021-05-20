@@ -18,8 +18,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get', 'post'])
     def posts(self, request, pk):
-        profile = get_object_or_404(Profile, pk=pk)
-        posts = profile.posts.all()
+        user = get_object_or_404(User, pk=pk)  # pk 를 username로 바꿔야 함.
+        posts = user.posts.all()
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
 

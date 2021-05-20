@@ -1,7 +1,7 @@
 from django.db import transaction
 from rest_framework import serializers
 from .models import School, Area, Profile, Post, Like
-from dj_rest_auth.registration.serializers import RegisterSerializer
+from rest_auth.registration.serializers import RegisterSerializer
 
 
 class SchoolSerializer(serializers.ModelSerializer):
@@ -26,36 +26,38 @@ class LikeSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    writer_nickname = serializers.SerializerMethodField()
+    username = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['id', 'writer_nickname', 'writer', 'category', 'text', 'likes']
+        fields = ['id', 'username', 'writer', 'category', 'text', 'likes']
 
-    def get_writer_nickname(self, obj):
-        return obj.writer.nickname
+    def get_username(self, obj):
+        return obj.writer.username
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
     likes = LikeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Profile
-        fields = ['user', 'nickname', 'school', 'area', 'score', 'likes']
+        fields = ['user', 'username', 'school', 'area', 'score', 'likes']
+
+    def get_username(self, obj):
+        return obj.user.username
 
 
 class CustomRegisterSerializer(RegisterSerializer):
     school = serializers.ChoiceField(choices=School.objects.all())
     area = serializers.ChoiceField(choices=Area.objects.all())
-    nickname = serializers.CharField(max_length=50)
 
     @transaction.atomic
     def save(self, request):
         user = super().save(request)
         school = self.data.get('school')
         area = self.data.get('area')
-        nickname = self.data.get('nickname')
-        profile = Profile(user=user, nickname=nickname, school=school, area=area)
+        profile = Profile(user=user, school=school, area=area)
         user.save()
         profile.save()
         return user
