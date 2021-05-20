@@ -1,13 +1,12 @@
 import client from './client';
 
-export const login = ({ userId, password }) => {
-  client.post('http://localhost:8000/auth/login', { userId, password });
+export const login = ({ username, password }) => {
+  client.post('http://localhost:8000/auth/login', { username, password });
 };
 
-export const register = ({ username, userId, password, area, school }) => {
+export const register = ({ username, password, area, school }) => {
   client.post('http://localhost:8000/auth/register', {
     username,
-    userId,
     password,
     area,
     school,

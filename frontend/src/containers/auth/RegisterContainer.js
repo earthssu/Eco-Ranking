@@ -27,13 +27,11 @@ const RegisterContainer = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { username, userId, password, passwordConfirm, area, school } = form;
+    const { username, password, passwordConfirm, area, school } = form;
     if (password !== passwordConfirm) {
       return;
     }
-    dispatch(
-      register({ username, userId, password, passwordConfirm, area, school }),
-    );
+    dispatch(register({ username, password, passwordConfirm, area, school }));
   };
 
   useEffect(() => {

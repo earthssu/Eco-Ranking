@@ -52,16 +52,9 @@ const RegisterForm = ({ form, onChange, onSubmit }) => {
         <StyledInput
           autoComplete="username"
           name="username"
-          placeholder="이름"
+          placeholder="이름 (영문 기재)"
           onChange={onChange}
           value={form.username}
-        />
-        <StyledInput
-          autoComplete="userId"
-          name="userId"
-          placeholder="아이디"
-          onChange={onChange}
-          value={form.userId}
         />
         <StyledInput
           autoComplete="new-password"
