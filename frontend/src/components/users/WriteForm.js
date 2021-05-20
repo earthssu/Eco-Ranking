@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import Button from '../common/Button';
@@ -31,7 +31,29 @@ const ButtonWithMarginTop = styled(Button)`
   float: right;
 `;
 
-const WriteForm = ({ onChange, onSubmit }) => {
+const StyledInput = styled.input`
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #8b8b8b;
+  padding-bottom: 0.5rem;
+  outline: none;
+  width: 100%;
+  &:focus {
+    color: $oc-teal-7;
+    border-bottom: 1px solid #525252;
+  }
+  & + & {
+    margin-top: 1rem;
+  }
+`;
+
+const WriteForm = ({ onChangeField, onSubmit, category, text }) => {
+  const onChangeCategory = (e) => {
+    onChangeField({ key: 'category', value: e });
+  };
+  const onChangeText = (e) => {
+    onChangeField({ key: 'text', value: e.target.value });
+  };
   return (
     <>
       <ResponsiveCustom>
@@ -40,19 +62,21 @@ const WriteForm = ({ onChange, onSubmit }) => {
           <form onSubmit={onSubmit}>
             <SelectBlock>
               <Select
+                name="category"
                 size="large"
                 defaultValue="키워드 선택"
                 style={{ width: 200 }}
-                onChange={onChange}
+                onChange={onChangeCategory}
+                value={category}
               >
-                <Option key="transport">대중교통 이용</Option>
-                <Option key="ecoProducts">친환경 제품 사용</Option>
-                <Option key="wasteSorting">분리수거</Option>
-                <Option key="veganism">비거니즘 실천</Option>
+                <Option value="transport">대중교통 이용</Option>
+                <Option value="ecoProducts">친환경 제품 사용</Option>
+                <Option value="wasteSorting">분리수거</Option>
+                <Option value="veganism">비거니즘 실천</Option>
               </Select>
             </SelectBlock>
             <div>실천 내용을 간단히 입력해주세요</div>
-            <TextArea rows={3} onChange={onChange} />
+            <TextArea rows={3} onChange={onChangeText} value={text} />
             <ButtonWithMarginTop>저장</ButtonWithMarginTop>
           </form>
         </WriteBlock>

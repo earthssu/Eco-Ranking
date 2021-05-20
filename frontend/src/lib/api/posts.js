@@ -1,9 +1,9 @@
 import client from './client';
+import { useSelector } from 'react-redux';
 
-const userId = 'userId';
-
-export const write = ({ category, text }) =>
-  client.post('http://localhost:8000/users/' + userId + '/posts', {
+export const write = ({ category, text }) => {
+  client.post('http://localhost:8000/users/' + '/posts', {
     category,
     text,
   });
+};
