@@ -39,7 +39,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     @action(methods=['post'], detail=True)
     def posting(self, request, username):
         user = get_object_or_404(User, username=username)
-        post = Post.objects.create(writer=user, text=request.data['text'])
+        post = Post.objects.create(writer=user, text=request.data['text'], category=request.data['category'])
         serializer = PostSerializer(post, request.data)
         if serializer.is_valid():
             serializer.save()
