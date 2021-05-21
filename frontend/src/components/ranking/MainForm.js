@@ -95,9 +95,9 @@ const MainForm = ({ school }) => {
   return (
     <>
       <ResponsiveCustom>
-        <h1>학교 랭킹 TOP 3</h1>
         {school && (
           <SectionBlock>
+            <h1>학교 랭킹 TOP 3</h1>
             {school[0] && (
               <FirstSchoolBlock>
                 <div className="school-name">{school[0]['name']}</div>

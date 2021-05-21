@@ -1,12 +1,12 @@
 import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
-import PollutionForm from '../components/pollution/PollutionForm';
+import PollutionContainer from '../containers/pollution/PollutionContainer';
 
 const PollutionPage = () => {
   return (
     <>
       <HeaderContainer />
-      <PollutionForm />
+      <PollutionContainer />
     </>
   );
 };
