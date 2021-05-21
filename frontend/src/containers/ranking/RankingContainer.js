@@ -21,7 +21,7 @@ const RankingContainer = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(areaRanking());
-  });
+  }, [dispatch]);
 
   return (
     <RankingForm
