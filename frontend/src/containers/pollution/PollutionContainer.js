@@ -54,7 +54,6 @@ const PollutionContainer = () => {
           correctData[4] +
           correctData[5] +
           correctData[6] +
-          correctData[7] +
           '</div>',
       });
 
