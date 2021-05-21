@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../components/common/Header';
+import PollutionForm from '../components/pollution/PollutionForm';
 
 const PollutionPage = () => {
   return (
     <>
       <Header />
-      <div>지역별 오염 농도 페이지</div>
+      <PollutionForm />
     </>
   );
 };
