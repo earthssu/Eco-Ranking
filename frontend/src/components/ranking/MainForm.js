@@ -107,7 +107,7 @@ const MainForm = ({ school }) => {
             {school[1] && (
               <SecondSchoolBlock>
                 <div className="school-name">{school[1]['name']}</div>
-                <div className="score">{school[1]['finaleScore']}점</div>
+                <div className="score">{school[1]['finalScore']}점</div>
               </SecondSchoolBlock>
             )}
             {school[2] && (
