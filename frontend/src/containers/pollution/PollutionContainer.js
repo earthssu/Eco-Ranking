@@ -38,9 +38,8 @@ const PollutionContainer = () => {
     const map = new kakao.maps.Map(container, options);
 
     markerData.forEach((el) => {
-      const correctData = pollution.filter(
-        (item) => item[0] === el.sig_kor_nm,
-      )[0];
+      const correctData = pollution.filter((item) => item[0] === el.sig_kor_nm);
+      console.log(correctData);
 
       const marker = new kakao.maps.Marker({
         map: map,
