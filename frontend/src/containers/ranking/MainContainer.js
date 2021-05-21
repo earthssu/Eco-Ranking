@@ -8,7 +8,8 @@ const MainContainer = () => {
 
   const fetchTopRanking = () => {
     axios.get('http://127.0.0.1:8000/rank/schools').then((res) => {
-      setSchoolRank(res.data.slice(0, 3));
+      console.log(res.data[0]);
+      setSchoolRank(res.data);
     });
   };
 

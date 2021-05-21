@@ -1,26 +1,51 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 import WriteForm from '../../components/users/WriteForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, initialize, writePost } from '../../modules/write';
+import { changeField, initialize } from '../../modules/write';
 
 const WriteContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { category, text, post, postError } = useSelector(({ write }) => ({
+  const { category, text } = useSelector(({ write }) => ({
     category: write.category,
     text: write.text,
-    post: write.post,
-    postError: write.postError,
   }));
+  const user = localStorage.getItem('user');
+  const [score, setScore] = useState(0);
 
   const onChangeField = useCallback(
     (payload) => dispatch(changeField(payload)),
     [dispatch],
   );
 
+  const writePost = ({ user, category, text }) => {
+    axios
+      .post('http://localhost:8000/users/' + user + '/posts/', {
+        user,
+        category,
+        text,
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push('/write');
+      });
+  };
+
+  const fetchUserScore = ({ user }) => {
+    axios.get('http://localhost:8000/users' + user + '/score/').then((res) => {
+      setScore(res.data);
+    });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(writePost({ category, text }));
+    writePost({ user, category, text });
   };
+
+  useEffect(() => {
+    fetchUserScore(user);
+  }, [user]);
 
   useEffect(() => {
     return () => {
@@ -28,19 +53,16 @@ const WriteContainer = ({ history }) => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    if (postError) {
-      console.log(postError);
-    }
-  }, [postError]);
   return (
     <WriteForm
       onChangeField={onChangeField}
       onSubmit={onSubmit}
       category={category}
       text={text}
+      user={user}
+      score={score}
     />
   );
 };
 
-export default WriteContainer;
+export default withRouter(WriteContainer);

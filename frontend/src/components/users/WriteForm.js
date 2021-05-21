@@ -31,17 +31,28 @@ const ButtonWithMarginTop = styled(Button)`
   float: right;
 `;
 
-const WriteForm = ({ onChangeField, onSubmit, category, text }) => {
+const WriteForm = ({
+  onChangeField,
+  onSubmit,
+  category,
+  text,
+  user,
+  score,
+}) => {
   const onChangeCategory = (e) => {
     onChangeField({ key: 'category', value: e });
   };
   const onChangeText = (e) => {
     onChangeField({ key: 'text', value: e.target.value });
   };
+
   return (
     <>
       <ResponsiveCustom>
-        <h1> 홍길동님의 환경 보호 지수 : 15점</h1>
+        <h1>
+          {' '}
+          {user}님의 환경 보호 지수 : {score}점
+        </h1>
         <WriteBlock>
           <form onSubmit={onSubmit}>
             <SelectBlock>
@@ -57,6 +68,7 @@ const WriteForm = ({ onChangeField, onSubmit, category, text }) => {
                 <Option value="ecoProducts">친환경 제품 사용</Option>
                 <Option value="wasteSorting">분리수거</Option>
                 <Option value="veganism">비거니즘 실천</Option>
+                <Option value="etc">기타</Option>
               </Select>
             </SelectBlock>
             <div>실천 내용을 간단히 입력해주세요</div>
