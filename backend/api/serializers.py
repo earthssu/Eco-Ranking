@@ -53,11 +53,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MyCustomTokenSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    username = serializers.SerializerMethodField()
 
     class Meta:
         model = Token
-        fields = ('key', 'user')
+        fields = ('key', 'username')
+
+    def get_username(self, obj):
+        return obj.user.username
 
 
 class CustomRegisterSerializer(RegisterSerializer):
