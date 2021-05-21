@@ -13,6 +13,4 @@ export const register = ({ username, password, area, school }) => {
   });
 };
 
-export const check = () => client.get('/auth/check');
-
 export const logout = () => client.get('/auth/logout');
