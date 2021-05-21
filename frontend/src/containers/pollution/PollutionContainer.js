@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { markerData } from '../../lib/data/MarkerData';
 import PollutionForm from '../../components/pollution/PollutionForm';
 
 const { kakao } = window;
@@ -37,30 +36,27 @@ const PollutionContainer = () => {
   };
   const map = new kakao.maps.Map(container, options);
 
-  markerData.forEach((el) => {
-    const correctData = pollution.filter(
-      (item) => item[0] === el.sig_kor_nm,
-    )[0];
+  pollution.forEach((el) => {
     const marker = new kakao.maps.Marker({
       map: map,
-      position: new kakao.maps.LatLng(el.lat, el.lng),
+      position: new kakao.maps.LatLng(Number(el[7]), Number(el[8])),
     });
     let infowindow = new kakao.maps.InfoWindow({
       content:
         '<div style="padding:2px;"><p><b>' +
-        correctData[0] +
+        el[0] +
         '</b></p><p>이산화질소농도: ' +
-        correctData[1] +
+        el[1] +
         '</p><p>오존농도: ' +
-        correctData[2] +
+        el[2] +
         '</p><p>일산화탄소농도: ' +
-        correctData[3] +
+        el[3] +
         '</p><p>아황산가스: ' +
-        correctData[4] +
+        el[4] +
         '</p><p>미세먼지: ' +
-        correctData[5] +
+        el[5] +
         '</p><p>초미세먼지: ' +
-        correctData[6] +
+        el[6] +
         '</div>',
     });
 
