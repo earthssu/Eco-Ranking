@@ -25,9 +25,7 @@ const PollutionContainer = () => {
     });
   };
 
-  useEffect(() => {
-    fetchPollution();
-
+  const mapScript = () => {
     let container = document.getElementById('pollution-map');
     let options = {
       center: new kakao.maps.LatLng(37.566826, 126.9786567),
@@ -73,7 +71,10 @@ const PollutionContainer = () => {
         makeOutListener(infowindow),
       );
     });
-  }, [pollution]);
+  };
+
+  fetchPollution();
+  mapScript();
 
   return <PollutionForm />;
 };
