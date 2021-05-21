@@ -1,30 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import MainForm from '../../components/ranking/MainForm';
-import { schoolRanking } from '../../modules/ranking';
 
 const MainContainer = () => {
-  const dispatch = useDispatch();
-  const { school, schoolError, schoolLoading } = useSelector(
-    ({ ranking, loading }) => ({
-      school: ranking.school,
-      schoolError: ranking.schoolError,
-      schoolLoading: loading['rank/SCHOOL'],
-    }),
-  );
+  const [schoolRank, setSchoolRank] = useState([]);
+
+  const fetchTopRanking = () => {
+    axios.get('http://127.0.0.1:8000/rank/schools').then((res) => {
+      setSchoolRank(res.data.slice(0, 3));
+    });
+  };
 
   useEffect(() => {
-    dispatch(schoolRanking());
-  }, [dispatch]);
+    fetchTopRanking();
+  }, []);
 
-  return (
-    <MainForm
-      school={school}
-      schoolError={schoolError}
-      schoolLoading={schoolLoading}
-    />
-  );
+  return <MainForm school={schoolRank} />;
 };
 
 export default withRouter(MainContainer);

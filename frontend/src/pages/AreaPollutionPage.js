@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/common/Header';
+import HeaderContainer from '../containers/common/HeaderContainer';
 
 const AreaPollutionPage = () => {
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <div>지역 오염농도 상세 페이지</div>
     </>
   );

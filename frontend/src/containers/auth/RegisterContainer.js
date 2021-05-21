@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, register } from '../../modules/auth';
 import RegisterForm from '../../components/auth/RegisterForm';
 import { withRouter } from 'react-router-dom';
-import { check } from '../../modules/user';
 
 const RegisterContainer = ({ history }) => {
   const dispatch = useDispatch();
@@ -47,7 +46,6 @@ const RegisterContainer = ({ history }) => {
     if (auth) {
       console.log('회원가입 성공');
       console.log(auth);
-      dispatch(check());
     }
   }, [auth, authError, dispatch]);
 

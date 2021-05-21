@@ -62,13 +62,6 @@ const RankItem = ({ rank, item }) => {
 };
 
 const RankingForm = ({ school, area }) => {
-  // if (schoolError) {
-  //   return <div>학교 순위에서 에러가 발생했습니다!</div>;
-  // }
-  // if (areaError) {
-  //   return <div>지역 순위에서 에러가 발생했습니다!</div>;
-  // }
-
   return (
     <>
       <ResponsiveCustom>

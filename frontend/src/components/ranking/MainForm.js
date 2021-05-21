@@ -91,24 +91,24 @@ const CustomBulb = styled(BulbOutlined)`
 const RecommendListBlock = styled.div`
   margin-bottom: 1rem;
 `;
-const MainForm = ({ school, schoolError, schoolLoading }) => {
+const MainForm = ({ school }) => {
   return (
     <>
       <ResponsiveCustom>
         <h1>학교 랭킹 TOP 3</h1>
-        {!schoolLoading && school && (
+        {school && (
           <SectionBlock>
             <FirstSchoolBlock>
-              <div className="school-name">{school[0][0]}</div>
-              <div className="score">{school[0][1]}점</div>
+              <div className="school-name">{school[0].name}</div>
+              <div className="score">{school[0].finalScore}점</div>
             </FirstSchoolBlock>
             <SecondSchoolBlock>
-              <div className="school-name">{school[1][0]}</div>
-              <div className="score">{school[1][1]}점</div>
+              <div className="school-name">{school[1].name}</div>
+              <div className="score">{school[1].finalScore}점</div>
             </SecondSchoolBlock>
             <ThirdSchoolBlock>
-              <div className="school-name">{school[2][0]}</div>
-              <div className="score">{school[2][1]}점</div>
+              <div className="school-name">{school[2].name}</div>
+              <div className="score">{school[2].finalScore}점</div>
             </ThirdSchoolBlock>
           </SectionBlock>
         )}
