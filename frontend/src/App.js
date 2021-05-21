@@ -9,10 +9,14 @@ import PollutionPage from './pages/PollutionPage';
 import AreaPollutionPage from './pages/AreaPollutionPage';
 import WritePage from './pages/WritePage';
 import CommunityPage from './pages/CommunityPage';
+import { Helmet } from 'react-helmet-async';
 
 function App() {
   return (
     <>
+      <Helmet>
+        <title>Eco Ranking</title>
+      </Helmet>
       <Route component={MainPage} path="/" exact />
       <Route component={LoginPage} path="/login" />
       <Route component={RegisterPage} path="/register" />
