@@ -27,9 +27,7 @@ const PollutionContainer = () => {
 
   useEffect(() => {
     fetchPollution();
-  }, []);
 
-  const mapScript = () => {
     let container = document.getElementById('pollution-map');
     let options = {
       center: new kakao.maps.LatLng(37.566826, 126.9786567),
@@ -38,9 +36,9 @@ const PollutionContainer = () => {
     const map = new kakao.maps.Map(container, options);
 
     markerData.forEach((el) => {
-      const correctData = pollution.filter((item) => item[0] === el.sig_kor_nm);
-      console.log(correctData);
-
+      const correctData = pollution.filter(
+        (item) => item[0] === el.sig_kor_nm,
+      )[0];
       const marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(el.lat, el.lng),
@@ -75,11 +73,7 @@ const PollutionContainer = () => {
         makeOutListener(infowindow),
       );
     });
-  };
-
-  useEffect(() => {
-    mapScript();
-  }, []);
+  }, [pollution]);
 
   return <PollutionForm />;
 };
