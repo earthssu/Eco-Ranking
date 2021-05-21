@@ -128,9 +128,10 @@ class Profile(Base):
 class Post(Base):
     CATEGORY_CHOICES = [
         ('대중교통 이용', '대중교통 이용'),
+        ('친환경 제품 사용', '친환경 제품 사용'),
         ('분리수거', '분리수거'),
-        ('친환경 제품 이용', '친환경 제품 이용'),
-        ('기타', '기타'),
+        ('비거니즘 실천', '비거니즘 실천'),
+        ('etc', 'etc')
     ]
     writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
