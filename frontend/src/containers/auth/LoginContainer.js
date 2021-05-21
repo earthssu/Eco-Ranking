@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import LoginForm from '../../components/auth/LoginForm';
 import { withRouter } from 'react-router-dom';
-import { check } from '../../modules/user';
 
 const LoginContainer = ({ history }) => {
   const dispatch = useDispatch();
@@ -28,7 +27,6 @@ const LoginContainer = ({ history }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password } = form;
-    console.log(username, password);
     dispatch(login({ username, password }));
   };
 
@@ -44,9 +42,9 @@ const LoginContainer = ({ history }) => {
     }
     if (auth) {
       console.log('로그인 성공');
-      // dispatch(check());
+      history.push('/');
     }
-  }, [auth, authError]);
+  }, [auth, authError, history]);
 
   useEffect(() => {
     if (user) {
