@@ -98,18 +98,24 @@ const MainForm = ({ school }) => {
         <h1>학교 랭킹 TOP 3</h1>
         {school && (
           <SectionBlock>
-            <FirstSchoolBlock>
-              <div className="school-name">{school[0].name}</div>
-              <div className="score">{school[0].finalScore}점</div>
-            </FirstSchoolBlock>
-            <SecondSchoolBlock>
-              <div className="school-name">{school[1].name}</div>
-              <div className="score">{school[1].finalScore}점</div>
-            </SecondSchoolBlock>
-            <ThirdSchoolBlock>
-              <div className="school-name">{school[2].name}</div>
-              <div className="score">{school[2].finalScore}점</div>
-            </ThirdSchoolBlock>
+            {school[0] && (
+              <FirstSchoolBlock>
+                <div className="school-name">{school[0]['name']}</div>
+                <div className="score">{school[0]['finalScore']}점</div>
+              </FirstSchoolBlock>
+            )}
+            {school[1] && (
+              <SecondSchoolBlock>
+                <div className="school-name">{school[1]['name']}</div>
+                <div className="score">{school[1]['finaleScore']}점</div>
+              </SecondSchoolBlock>
+            )}
+            {school[2] && (
+              <ThirdSchoolBlock>
+                <div className="school-name">{school[2]['name']}</div>
+                <div className="score">{school[2]['finalScore']}점</div>
+              </ThirdSchoolBlock>
+            )}
           </SectionBlock>
         )}
         <SectionBlock>
