@@ -1,5 +1,4 @@
 from django_filters.rest_framework import FilterSet, filters
-from django_filters.rest_framework import DjangoFilterBackend
 from .models import *
 
 
@@ -12,9 +11,7 @@ class PostFilter(FilterSet):
 
 
 class ProfileFilter(FilterSet):
-    nickname = filters.CharFilter(field_name='nickname', lookup_expr='iexact')
-
     class Meta:
         model = Profile
-        fields = ['nickname']
+        fields = ['user']
 

@@ -3,7 +3,7 @@ from .models import Post, Profile, School, Area, Like
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['nickname', 'school', 'area', 'score']
+    list_display = ['school', 'area', 'score']
 
 
 class SchoolAdmin(admin.ModelAdmin):

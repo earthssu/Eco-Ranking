@@ -69,6 +69,8 @@ class Area(Base):
                     score = 0
         return score
 
+    score = property(finalScore)
+
 
 class School(Base):
     name = models.CharField(max_length=20)
@@ -103,20 +105,20 @@ class School(Base):
                     if score < 0:
                         score = 0
         return score
+    score = property(finalScore)
 
 
 class Profile(Base):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    nickname = models.CharField(max_length=50, unique=True)
     school = models.ForeignKey(School, null=True, related_name='students', on_delete=models.SET_NULL)
     area = models.ForeignKey(Area, related_name='users', on_delete=models.CASCADE)
     # score = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.nickname
+        return self.user.username
     
     def score(self):
-        return self.posts.values().count() * 10
+        return self.user.posts.values().count() * 10
 
 
 class Post(Base):
@@ -126,7 +128,7 @@ class Post(Base):
         ('친환경 제품 이용', '친환경 제품 이용'),
         ('기타', '기타'),
     ]
-    writer = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     text = models.TextField(null=True)
 
@@ -135,7 +137,7 @@ class Post(Base):
 
 
 class Like(Base):
-    liker = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='liked_posts')
+    liker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='liked_posts')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
 
     def __str__(self):
