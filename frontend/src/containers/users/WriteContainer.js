@@ -21,7 +21,7 @@ const WriteContainer = ({ history }) => {
 
   const writePost = ({ user, category, text }) => {
     axios
-      .post('http://localhost:8000/users/' + user + '/posts/', {
+      .post('http://localhost:8000/users/' + user + '/posting/', {
         user,
         category,
         text,
