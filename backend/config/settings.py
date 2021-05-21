@@ -123,7 +123,7 @@ TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -158,3 +158,5 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+DATE_FORMAT = 'Y-m-d'

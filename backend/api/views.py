@@ -36,6 +36,13 @@ class ProfileViewSet(viewsets.ModelViewSet):
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
 
+    @action(detail=True, methods=['get'])
+    def score(self, request, username):
+        user = get_object_or_404(User, username=username)  # pk 를 username로 바꿔야 함.
+        score = user.profile.score()
+        serializer = PostSerializer(score, many=True)
+        return Response(score)
+
 
 # class ProfileList(APIView):
 #     def get(self, request, format=None):

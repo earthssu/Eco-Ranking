@@ -25,13 +25,17 @@ class LikeSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     username = serializers.SerializerMethodField()
+    school = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['id', 'username', 'writer', 'category', 'text', 'likes']
+        fields = ['id', 'username', 'writer', 'school', 'category', 'text', 'likes', 'created_at']
 
     def get_username(self, obj):
         return obj.writer.username
+
+    def get_school(self, obj):
+        return obj.writer.profile.school.name
 
 
 class ProfileSerializer(serializers.ModelSerializer):
