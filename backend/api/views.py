@@ -1,4 +1,4 @@
-from django.http import Http404
+import os
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
@@ -10,6 +10,19 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 #
+LatLon_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          '../data/LatLon.json')
+LatLon = json.load(open(LatLon_tmp, encoding='utf-8'))
+Lat_list = []
+Lon_list = []
+
+for i in range(0, 25):
+    for j in range(0, 25):
+        if df['MSRSTE_NM'][i] == LatLon['DATA'][j]["sig_kor_nm"]:
+            Lat_list.append(LatLon['DATA'][j]['lat'])
+            Lon_list.append(LatLon['DATA'][j]['lng'])
+
+
 gu, pm10, pm25, o3, no2, co, so2, gu_score, dic = [], [], [], [], [], [], [], [], []
 for i in range(0, 25):
     gu.append(Area.objects.all()[i].name)
@@ -19,7 +32,7 @@ for i in range(0, 25):
     no2.append(df['NO2'][i])
     co.append(df['CO'][i])
     so2.append(df['SO2'][i])
-    dic = list(zip(gu, pm10, pm25, o3, no2, co, so2))
+    dic = list(zip(gu, pm10, pm25, o3, no2, co, so2, Lat_list, Lon_list))
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -52,49 +65,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
         score = user.profile.score()
         serializer = PostSerializer(score, many=True)
         return Response(score)
-
-
-# class ProfileList(APIView):
-#     def get(self, request, format=None):
-#         profiles = Profile.objects.all()
-#         serializer = ProfileSerializer(profiles, many=True)
-#         return Response(serializer.data)
-#
-#     def post(self, request, format=None):
-#         serializer = ProfileSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#
-# class ProfileDetail(APIView):
-#     def get_object(self, username):
-#         try:
-#             return User.objects.get(username=username)
-#         except User.DoesNotExist:
-#             raise Http404
-#
-#     def get(self, request, username, format=None):
-#         user = self.get_object(username)
-#         profile = Profile.objects.get(user=user)
-#         serializer = ProfileSerializer(profile)
-#         return Response(serializer.data)
-#
-#     def put(self, request, username, format=None):
-#         user = self.get_object(username)
-#         profile = Profile.objects.get(user=user)
-#         serializer = ProfileSerializer(profile, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#     def delete(self, request, username, format=None):
-#         user = self.get_object(username)
-#         profile = Profile.objects.get(user=user)
-#         profile.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class PostViewSet(viewsets.ModelViewSet):
