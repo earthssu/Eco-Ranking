@@ -61,27 +61,20 @@ const RankItem = ({ rank, item }) => {
   );
 };
 
-const RankingForm = ({
-  school,
-  area,
-  schoolError,
-  areaError,
-  schoolLoading,
-  areaLoading,
-}) => {
-  if (schoolError) {
-    return <div>학교 순위에서 에러가 발생했습니다!</div>;
-  }
-  if (areaError) {
-    return <div>지역 순위에서 에러가 발생했습니다!</div>;
-  }
+const RankingForm = ({ school, area }) => {
+  // if (schoolError) {
+  //   return <div>학교 순위에서 에러가 발생했습니다!</div>;
+  // }
+  // if (areaError) {
+  //   return <div>지역 순위에서 에러가 발생했습니다!</div>;
+  // }
 
   return (
     <>
       <ResponsiveCustom>
         <SectionBlock>
           <h1>학교별 순위</h1>
-          {!schoolLoading && school && (
+          {school && (
             <RankingBlock>
               {school.map((item, rank) => (
                 <RankItem rank={rank + 1} item={item} />
@@ -91,7 +84,7 @@ const RankingForm = ({
         </SectionBlock>
         <SectionBlock>
           <h1>지역별 순위</h1>
-          {!areaLoading && area && (
+          {area && (
             <RankingBlock>
               {area.map((item, rank) => (
                 <RankItem rank={rank + 1} item={item} />
