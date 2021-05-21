@@ -31,8 +31,8 @@ def pollutionLevel():
 
 
 class Base(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
         abstract = True
@@ -40,6 +40,7 @@ class Base(models.Model):
 
 class Area(Base):
     name = models.CharField(max_length=10)
+
     # score = models.IntegerField(default=0)
 
     def __str__(self):
@@ -75,6 +76,7 @@ class Area(Base):
 class School(Base):
     name = models.CharField(max_length=20)
     area = models.ForeignKey(Area, related_name='schools', null=True, on_delete=models.SET_NULL)
+
     # score = models.IntegerField(default=0)
 
     def __str__(self):
@@ -105,6 +107,7 @@ class School(Base):
                     if score < 0:
                         score = 0
         return score
+
     score = property(finalScore)
 
 
@@ -112,11 +115,12 @@ class Profile(Base):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     school = models.ForeignKey(School, null=True, related_name='students', on_delete=models.SET_NULL)
     area = models.ForeignKey(Area, related_name='users', on_delete=models.CASCADE)
+
     # score = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
-    
+
     def score(self):
         return self.user.posts.values().count() * 10
 
