@@ -76,7 +76,7 @@ const Header = ({ user, onLogout }) => {
           <Category to="/write">보호 기록</Category>
           {user ? (
             <div className="right">
-              <UserInfo>{user.username}</UserInfo>
+              <UserInfo>{user}</UserInfo>
               <Button onClick={onLogout}>로그아웃</Button>
             </div>
           ) : (
