@@ -9,14 +9,12 @@ const RankingContainer = () => {
 
   const fetchSchoolRanking = () => {
     axios.get('http://127.0.0.1:8000/rank/schools').then((res) => {
-      console.log(res.data);
       setSchoolRank(res.data);
     });
   };
 
   const fetchAreaRanking = () => {
     axios.get('http://127.0.0.1:8000/rank/area').then((res) => {
-      console.log(res.data);
       setAreaRank(res.data);
     });
   };
