@@ -59,9 +59,7 @@ const PostListForm = ({ posts }) => {
     <>
       <ResponsiveCustom>
         <PostsBlock>
-          {posts.map((item) => (
-            <PostItem item={item} />
-          ))}
+          {posts && posts.map((item) => <PostItem item={item} />)}
         </PostsBlock>
       </ResponsiveCustom>
     </>
