@@ -29,12 +29,22 @@ class ProfileViewSet(viewsets.ModelViewSet):
     # filterset_class = ProfileFilter
     lookup_field = 'username'
 
-    @action(detail=True, methods=['get', 'post'])
+    @action(detail=True, methods=['get'])
     def posts(self, request, username):
         user = get_object_or_404(User, username=username)  # pk 를 username로 바꿔야 함.
         posts = user.posts.all()
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
+
+    @action(methods=['post'], detail=True)
+    def posting(self, request, username):
+        user = get_object_or_404(User, username=username)
+        post = Post.objects.create(writer=user, text=request.data['text'], category=request.data['category'])
+        serializer = PostSerializer(post, request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=True, methods=['get'])
     def score(self, request, username):
