@@ -142,6 +142,9 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
 }
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'api.serializers.MyCustomTokenSerializer',
+}
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer'
 }
