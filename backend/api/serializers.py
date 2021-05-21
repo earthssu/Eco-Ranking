@@ -2,6 +2,7 @@ from django.db import transaction
 from rest_framework import serializers
 from .models import School, Area, Profile, Post, Like, User
 from rest_auth.registration.serializers import RegisterSerializer
+from rest_framework.authtoken.models import Token
 
 
 class SchoolSerializer(serializers.ModelSerializer):
@@ -49,6 +50,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['username']
+
+
+class MyCustomTokenSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Token
+        fields = ('key', 'user')
 
 
 class CustomRegisterSerializer(RegisterSerializer):
