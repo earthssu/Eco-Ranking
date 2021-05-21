@@ -1,25 +1,22 @@
 from django.db import transaction
 from rest_framework import serializers
-from .models import School, Area, Profile, Post, Like
+from .models import School, Area, Profile, Post, Like, User
 from rest_auth.registration.serializers import RegisterSerializer
 
 
 class SchoolSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = School
         fields = ['name', 'area', 'studentsScoreSum', 'pollution', 'finalScore']
 
 
 class AreaSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Area
         fields = ['name', 'usersScoreSum', 'pollution', 'finalScore']
 
 
 class LikeSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Like
         fields = ['liker', 'post']
@@ -46,6 +43,12 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_username(self, obj):
         return obj.user.username
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username']
 
 
 class CustomRegisterSerializer(RegisterSerializer):

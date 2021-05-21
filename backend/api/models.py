@@ -69,6 +69,8 @@ class Area(Base):
                     score = 0
         return score
 
+    score = property(finalScore)
+
 
 class School(Base):
     name = models.CharField(max_length=20)
@@ -103,6 +105,7 @@ class School(Base):
                     if score < 0:
                         score = 0
         return score
+    score = property(finalScore)
 
 
 class Profile(Base):

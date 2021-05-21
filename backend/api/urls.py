@@ -8,11 +8,11 @@ router = routers.DefaultRouter()
 router.register(r'users', ProfileViewSet)  # 회원 정보 CRUD, list detail 모두 조회 가능
 router.register(r'posts', PostViewSet)
 
-
 urlpatterns = [
-    # path('users/<int:pk>/posts/<int:post_pk>', views.ProfilePostDetail.as_view()),
     path('', include(router.urls)),
-    path('auth/', obtain_auth_token),
+    # path('users/', views.ProfileList.as_view()),
+    # path('users/<str:username>', views.ProfileDetail.as_view()),
+    # path('auth/', obtain_auth_token),
     path('data/', views.DataList.as_view()),
     path('pollution/', views.PollutionList.as_view()),
     path('pollution/<int:pk>', views.PollutionDetail.as_view()),

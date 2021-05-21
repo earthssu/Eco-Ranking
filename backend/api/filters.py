@@ -9,10 +9,9 @@ class PostFilter(FilterSet):
         model = Post
         fields = ['writer', 'category', 'text']
 
-class ProfileFilter(FilterSet):
-    nickname = filters.CharFilter(field_name='username', lookup_expr='iexact')
 
+class ProfileFilter(FilterSet):
     class Meta:
         model = Profile
-        fields = ['nickname']
+        fields = ['user']
 
