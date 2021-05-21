@@ -43,23 +43,25 @@ const ButtonCustom = styled(Button)`
   font-size: 0.7rem;
 `;
 
-const PostListForm = () => {
+const PostItem = ({ item }) => {
+  return (
+    <PostBlock>
+      <span className="date">{item.created_at}</span>
+      <span className="keyword">{item.category}</span>
+      <span className="comment">{item.text}</span>
+      <ButtonCustom red>삭제</ButtonCustom>
+    </PostBlock>
+  );
+};
+
+const PostListForm = ({ posts }) => {
   return (
     <>
       <ResponsiveCustom>
         <PostsBlock>
-          <PostBlock>
-            <span className="date">2020.05.18</span>
-            <span className="keyword">대중교통 이용</span>
-            <span className="comment">버스를 타고 등교함</span>
-            <ButtonCustom red>삭제</ButtonCustom>
-          </PostBlock>
-          <PostBlock>
-            <span className="date">2020.05.18</span>
-            <span className="keyword">분리수거</span>
-            <span className="comment">아파트 분리수거장에서 분리수거함</span>
-            <ButtonCustom red>삭제</ButtonCustom>
-          </PostBlock>
+          {posts.map((item) => (
+            <PostItem item={item} />
+          ))}
         </PostsBlock>
       </ResponsiveCustom>
     </>

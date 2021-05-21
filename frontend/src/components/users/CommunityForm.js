@@ -53,17 +53,17 @@ const LikeButton = styled.button`
   color: #5a5a5a;
 `;
 
-const PostItem = () => {
+const PostItem = ({ item }) => {
   return (
     <PostItemBlock>
       <h2>
-        <b className="name">홍길동</b> 강서구초등학교
+        <b className="name">{item.username}</b> {item.school}
       </h2>
       <div className="sub-box">
-        <span className="post-date">2020.05.19</span>
-        <span className="post-keyword">대중교통 이용</span>
+        <span className="post-date">{item.created_at}</span>
+        <span className="post-keyword">{item.category}</span>
       </div>
-      <p>집에서 학교까지 버스 타고 이동함.</p>
+      <p>{item.text}</p>
       <LikeBlock>
         <LikeButton>
           <HeartTwoTone twoToneColor="#eb2f96" />
@@ -74,12 +74,13 @@ const PostItem = () => {
     </PostItemBlock>
   );
 };
-const CommunityForm = () => {
+const CommunityForm = ({ posts }) => {
   return (
     <>
       <ResponsiveCustom>
-        <PostItem />
-        <PostItem />
+        {posts.map((item) => (
+          <PostItem item={item} />
+        ))}
       </ResponsiveCustom>
     </>
   );

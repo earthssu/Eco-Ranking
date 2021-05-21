@@ -8,13 +8,13 @@ const RankingContainer = () => {
   const [areaRank, setAreaRank] = useState([]);
 
   const fetchSchoolRanking = () => {
-    axios.get('http://127.0.0.1:8000/rank/schools').then((res) => {
+    axios.get('http://localhost:8000/rank/schools').then((res) => {
       setSchoolRank(res.data);
     });
   };
 
   const fetchAreaRanking = () => {
-    axios.get('http://127.0.0.1:8000/rank/area').then((res) => {
+    axios.get('http://localhost:8000/rank/area').then((res) => {
       setAreaRank(res.data);
     });
   };
