@@ -33,7 +33,7 @@ const WriteContainer = ({ history }) => {
   };
 
   const fetchUserScore = ({ user }) => {
-    axios.get('http://localhost:8000/users' + user + '/score').then((res) => {
+    axios.get('http://localhost:8000/users/' + user + '/score').then((res) => {
       setScore(res.data);
     });
   };

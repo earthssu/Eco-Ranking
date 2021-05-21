@@ -7,7 +7,7 @@ const PostListContainer = () => {
   const [postList, setPostList] = useState([]);
   const user = localStorage.getItem('user');
 
-  const fetchPostList = (user) => {
+  const fetchPostList = ({ user }) => {
     axios.get('http://localhost:8000/users/' + user + '/posts').then((res) => {
       setPostList(res.data);
     });
