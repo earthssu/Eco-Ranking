@@ -27,10 +27,10 @@ const WriteContainer = ({ history }) => {
   );
 
   const writePost = ({ user, category, text }) => {
-    const replaceCate = categoryKor[category];
+    category = categoryKor[category];
     axios
       .post('http://localhost:8000/users/' + user + '/posting/', {
-        replaceCate,
+        category,
         text,
       })
       .then((res) => {
