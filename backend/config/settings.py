@@ -154,3 +154,5 @@ ACCOUNT_EMAIL_REQUIRED = False
 CORS_ORIGIN_WHITELIST = (
     'https://localhost:3000',
 )
+
+CORS_ALLOW_ALL_ORIGINS = True
