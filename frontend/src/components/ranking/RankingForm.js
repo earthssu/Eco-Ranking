@@ -50,8 +50,8 @@ const GroupBlock = styled.div`
 `;
 
 const RankItem = ({ rank, item }) => {
-  const name = item[0];
-  const score = item[1];
+  const name = item.name;
+  const score = item.finalScore;
   return (
     <GroupBlock>
       <span>{rank}</span>
