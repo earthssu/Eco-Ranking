@@ -13,6 +13,13 @@ const WriteContainer = ({ history }) => {
   }));
   const user = localStorage.getItem('user');
   const [score, setScore] = useState(0);
+  const categoryKor = {
+    transport: '대중교통 이용',
+    ecoProducts: '친환경 제품 사용',
+    wasteSorting: '분리수거',
+    veganism: '비거니즘 실천',
+    etc: '기타',
+  };
 
   const onChangeField = useCallback(
     (payload) => dispatch(changeField(payload)),
@@ -20,9 +27,10 @@ const WriteContainer = ({ history }) => {
   );
 
   const writePost = ({ user, category, text }) => {
+    const replaceCate = categoryKor[category];
     axios
       .post('http://localhost:8000/users/' + user + '/posting/', {
-        category,
+        replaceCate,
         text,
       })
       .then((res) => {
