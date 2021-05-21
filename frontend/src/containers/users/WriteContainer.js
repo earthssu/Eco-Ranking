@@ -22,13 +22,11 @@ const WriteContainer = ({ history }) => {
   const writePost = ({ user, category, text }) => {
     axios
       .post('http://localhost:8000/users/' + user + '/posting/', {
-        user,
         category,
         text,
       })
       .then((res) => {
-        console.log(res.data);
-        history.push('/write');
+        window.location.reload();
       });
   };
 

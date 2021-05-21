@@ -7,7 +7,7 @@ const PollutionPage = () => {
   return (
     <>
       <Helmet>
-        <titile>지역별 오염도 - Eco Ranking</titile>
+        <title>지역별 오염도 - Eco Ranking</title>
       </Helmet>
       <HeaderContainer />
       <PollutionContainer />

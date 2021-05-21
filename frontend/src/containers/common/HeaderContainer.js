@@ -7,7 +7,7 @@ const HeaderContainer = ({ history }) => {
 
   const onLogout = () => {
     localStorage.clear();
-    history.push('/');
+    history.push('/login');
   };
   return <Header user={user} onLogout={onLogout} />;
 };
