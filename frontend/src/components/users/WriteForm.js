@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import Button from '../common/Button';
@@ -29,22 +29,6 @@ const ButtonWithMarginTop = styled(Button)`
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   float: right;
-`;
-
-const StyledInput = styled.input`
-  font-size: 1rem;
-  border: none;
-  border-bottom: 1px solid #8b8b8b;
-  padding-bottom: 0.5rem;
-  outline: none;
-  width: 100%;
-  &:focus {
-    color: $oc-teal-7;
-    border-bottom: 1px solid #525252;
-  }
-  & + & {
-    margin-top: 1rem;
-  }
 `;
 
 const WriteForm = ({ onChangeField, onSubmit, category, text }) => {
