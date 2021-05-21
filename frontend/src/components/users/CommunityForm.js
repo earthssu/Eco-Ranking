@@ -78,9 +78,7 @@ const CommunityForm = ({ posts }) => {
   return (
     <>
       <ResponsiveCustom>
-        {posts.map((item) => (
-          <PostItem item={item} />
-        ))}
+        {posts && posts.map((item) => <PostItem item={item} />)}
       </ResponsiveCustom>
     </>
   );

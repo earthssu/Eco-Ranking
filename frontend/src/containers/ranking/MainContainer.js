@@ -7,8 +7,8 @@ const MainContainer = () => {
   const [schoolRank, setSchoolRank] = useState([]);
 
   const fetchTopRanking = () => {
-    axios.get('http://127.0.0.1:8000/rank/schools').then((res) => {
-      console.log(res.data[0]);
+    axios.get('http://localhost:8000/rank/schools').then((res) => {
+      console.log(res.data);
       setSchoolRank(res.data);
     });
   };
