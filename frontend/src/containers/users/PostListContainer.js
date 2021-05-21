@@ -14,7 +14,7 @@ const PostListContainer = () => {
   };
 
   useEffect(() => {
-    fetchPostList(user);
+    fetchPostList({ user });
   }, [user]);
 
   return <PostListForm posts={postList} />;

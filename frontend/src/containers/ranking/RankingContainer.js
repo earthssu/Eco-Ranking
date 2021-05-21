@@ -9,6 +9,8 @@ const RankingContainer = () => {
 
   const fetchSchoolRanking = () => {
     axios.get('http://localhost:8000/rank/schools').then((res) => {
+      console.log(res.data);
+      console.log(res.data[0]);
       setSchoolRank(res.data);
     });
   };

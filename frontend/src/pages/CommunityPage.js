@@ -1,12 +1,12 @@
 import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
-import CommunityForm from '../components/users/CommunityForm';
+import CommunityContainer from '../containers/users/CommunityContainer';
 
 const CommunityPage = () => {
   return (
     <>
       <HeaderContainer />
-      <CommunityForm />
+      <CommunityContainer />
     </>
   );
 };
