@@ -28,14 +28,11 @@ const WriteContainer = ({ history }) => {
 
   const writePost = ({ user, category, text }) => {
     category = categoryKor[category];
-    axios
-      .post('http://localhost:8000/users/' + user + '/posting/', {
-        category,
-        text,
-      })
-      .then((res) => {
-        window.location.reload();
-      });
+    axios.post('http://localhost:8000/users/' + user + '/posting/', {
+      category,
+      text,
+    });
+    window.location.reload();
   };
 
   const fetchUserScore = ({ user }) => {
