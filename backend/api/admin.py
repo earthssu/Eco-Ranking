@@ -15,7 +15,7 @@ class AreaAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['writer', 'category', 'text', 'created_at', 'updated_at']
+    list_display = ['writer', 'category', 'text', 'created_at']
 
 
 admin.site.register(Profile, ProfileAdmin)

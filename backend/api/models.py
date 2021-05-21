@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date, timedelta
@@ -125,7 +126,7 @@ class Profile(Base):
         return self.user.posts.values().count() * 10
 
 
-class Post(Base):
+class Post(models.Model):
     CATEGORY_CHOICES = [
         ('대중교통 이용', '대중교통 이용'),
         ('친환경 제품 사용', '친환경 제품 사용'),
@@ -136,6 +137,7 @@ class Post(Base):
     writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     text = models.TextField(null=True)
+    created_at = datetime.now().strftime("%Y-%m-%d")
 
     def __str__(self):
         return '{} : {}'.format(self.writer, self.text)

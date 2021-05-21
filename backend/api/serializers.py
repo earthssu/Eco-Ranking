@@ -1,8 +1,13 @@
+import json
+from datetime import datetime
+from django.db import models
 from django.db import transaction
 from rest_framework import serializers
 from .models import School, Area, Profile, Post, Like, User
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework.authtoken.models import Token
+
+now = datetime.now()
 
 
 class SchoolSerializer(serializers.ModelSerializer):
