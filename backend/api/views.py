@@ -9,7 +9,7 @@ from django_filters import rest_framework as filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-
+#
 gu, pm10, pm25, o3, no2, co, so2, gu_score, dic = [], [], [], [], [], [], [], [], []
 for i in range(0, 25):
     gu.append(Area.objects.all()[i].name)

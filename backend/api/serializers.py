@@ -64,3 +64,4 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.save()
         profile.save()
         return user
+#

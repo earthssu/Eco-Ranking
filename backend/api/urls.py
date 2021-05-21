@@ -19,3 +19,4 @@ urlpatterns = [
     path('rank/schools', views.SchoolRankList.as_view()),
     path('rank/area', views.AreaRankList.as_view())
 ]
+#

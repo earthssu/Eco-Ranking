@@ -20,3 +20,4 @@ admin.site.register(School, SchoolAdmin)
 admin.site.register(Area, AreaAdmin)
 admin.site.register(Like)
 
+#
