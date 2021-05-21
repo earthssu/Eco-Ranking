@@ -43,9 +43,9 @@ const Category = styled(NavLink)`
   }
   &.active {
     font-weight: 600;
-    color: #2F9780;
+    color: #2f9780;
     &:hover {
-      color: #3CBEA1;
+      color: #3cbea1;
     }
   }
   & + & {

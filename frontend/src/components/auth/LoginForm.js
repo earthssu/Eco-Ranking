@@ -44,16 +44,24 @@ const ButtonWithMarginTop = styled(Button)`
   margin-top: 1.5rem;
 `;
 
-const LoginForm = () => {
+const LoginForm = ({ form, onChange, onSubmit }) => {
   return (
     <LoginFormBlock>
-      <form>
-        <StyledInput autoComplete="userId" name="userId" placeholder="아이디" />
+      <form onSubmit={onSubmit}>
+        <StyledInput
+          autoComplete="username"
+          name="username"
+          placeholder="회원 이름"
+          onChange={onChange}
+          value={form.username}
+        />
         <StyledInput
           autoComplete="password"
           name="password"
           placeholder="비밀번호"
           type="password"
+          onChange={onChange}
+          value={form.password}
         />
         <ButtonWithMarginTop fullWidth>로그인</ButtonWithMarginTop>
       </form>

@@ -80,7 +80,7 @@ const RecommendBlock = styled.div`
   border-radius: 50px 50px;
   background: #ffffd9;
   font-size: 1.4rem;
-  font-weight: 600;x
+  font-weight: 600;
 `;
 
 const CustomBulb = styled(BulbOutlined)`
@@ -91,25 +91,27 @@ const CustomBulb = styled(BulbOutlined)`
 const RecommendListBlock = styled.div`
   margin-bottom: 1rem;
 `;
-const MainForm = () => {
+const MainForm = ({ school, schoolError, schoolLoading }) => {
   return (
     <>
       <ResponsiveCustom>
-        <SectionBlock>
-          <h1>학교 랭킹 TOP 3</h1>
-          <FirstSchoolBlock>
-            <div className="school-name">강서구 초등학교</div>
-            <div className="score">80점</div>
-          </FirstSchoolBlock>
-          <SecondSchoolBlock>
-            <div className="school-name">강서구 초등학교</div>
-            <div className="score">80점</div>
-          </SecondSchoolBlock>
-          <ThirdSchoolBlock>
-            <div className="school-name">강서구 초등학교</div>
-            <div className="score">80점</div>
-          </ThirdSchoolBlock>
-        </SectionBlock>
+        <h1>학교 랭킹 TOP 3</h1>
+        {!schoolLoading && school && (
+          <SectionBlock>
+            <FirstSchoolBlock>
+              <div className="school-name">{school[0][0]}</div>
+              <div className="score">{school[0][1]}점</div>
+            </FirstSchoolBlock>
+            <SecondSchoolBlock>
+              <div className="school-name">{school[1][0]}</div>
+              <div className="score">{school[1][1]}점</div>
+            </SecondSchoolBlock>
+            <ThirdSchoolBlock>
+              <div className="school-name">{school[2][0]}</div>
+              <div className="score">{school[2][1]}점</div>
+            </ThirdSchoolBlock>
+          </SectionBlock>
+        )}
         <SectionBlock>
           <h1>Tip! 탄소 절감하는 방법</h1>
           <RecommendBlock>

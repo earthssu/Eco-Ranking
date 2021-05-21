@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../components/common/Header';
-import RankingForm from '../components/ranking/RankingForm';
+import RankingContainer from '../containers/ranking/RankingContainer';
 
 const RankingPage = () => {
   return (
     <>
       <Header />
-      <RankingForm />
+      <RankingContainer />
     </>
   );
 };
