@@ -28,6 +28,7 @@ const LoginContainer = ({ history }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password } = form;
+    console.log(username, password);
     dispatch(login({ username, password }));
   };
 
@@ -43,9 +44,9 @@ const LoginContainer = ({ history }) => {
     }
     if (auth) {
       console.log('로그인 성공');
-      dispatch(check());
+      // dispatch(check());
     }
-  }, [auth, authError, dispatch]);
+  }, [auth, authError]);
 
   useEffect(() => {
     if (user) {
