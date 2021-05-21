@@ -152,5 +152,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000/',
+    'https://localhost:3000',
 )
+
+CORS_ALLOW_ALL_ORIGINS = True
