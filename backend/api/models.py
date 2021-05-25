@@ -69,7 +69,10 @@ class Area(Base):
                 score = self.usersScoreSum() - dic[i][1]
                 if score < 0:
                     score = 0
-        return score
+        if self.users.all().count() == 0:
+            return 0
+        else:
+            return int(score/self.users.all().count())
 
     score = property(finalScore)
 
@@ -107,7 +110,10 @@ class School(Base):
                     score = self.studentsScoreSum() - dic[j][1]
                     if score < 0:
                         score = 0
-        return score
+        if self.students.all().count() == 0:
+            return 0
+        else:
+            return int(score/self.students.all().count())
 
     score = property(finalScore)
 
