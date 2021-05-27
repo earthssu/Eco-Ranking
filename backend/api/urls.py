@@ -17,6 +17,7 @@ urlpatterns = [
     path('pollution/', views.PollutionList.as_view()),
     path('pollution/<int:pk>', views.PollutionDetail.as_view()),
     path('rank/schools', views.SchoolRankList.as_view()),
-    path('rank/area', views.AreaRankList.as_view())
+    path('rank/area', views.AreaRankList.as_view()),
+    path('schools/', views.SchoolRegister.as_view()),
 ]
 #

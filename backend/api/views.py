@@ -106,6 +106,19 @@ class AreaRankList(APIView):
         return Response(serializers.data)
 
 
+class SchoolRegister(APIView):
+    def get(self, request):
+        school = School.objects.all()
+        serializers = SchoolSerializer(school, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializer = SchoolSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 # 리스트
 # class SchoolRankList(APIView):
 #     def get(self, request):
