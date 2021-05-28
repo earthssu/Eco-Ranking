@@ -9,6 +9,7 @@ import PollutionPage from './pages/PollutionPage';
 import AreaPollutionPage from './pages/AreaPollutionPage';
 import WritePage from './pages/WritePage';
 import CommunityPage from './pages/CommunityPage';
+import ApplySchoolPage from './pages/ApplySchoolPage';
 import { Helmet } from 'react-helmet-async';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route component={AreaPollutionPage} path="/pollution/:area" />
       <Route component={WritePage} path="/write" />
       <Route component={CommunityPage} path="/community" />
+      <Route component={ApplySchoolPage} path="/apply" />
     </>
   );
 }

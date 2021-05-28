@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 const RegisterFormBlock = styled.div`
   h3 {
@@ -25,6 +28,26 @@ const StyledInput = styled.input`
   }
   & + & {
     margin-top: 1rem;
+  }
+`;
+
+const StyledSelect = styled(Select)`
+  margin-bottom: 0.5rem;
+`;
+
+const LabelMargin = styled.label`
+  margin-top: 0.5rem;
+`;
+
+const ApplyLink = styled.div`
+  margin-top: 0.5rem;
+  text-align: right;
+  a {
+    color: #868e96;
+    text-decoration: underline;
+    &:hover {
+      color: #212529;
+    }
   }
 `;
 
@@ -72,20 +95,35 @@ const RegisterForm = ({ form, onChange, onSubmit }) => {
           onChange={onChange}
           value={form.passwordConfirm}
         />
-        <StyledInput
-          autoComplete="area"
+        <LabelMargin for="area">지역 선택</LabelMargin>
+        <StyledSelect
           name="area"
-          placeholder="지역"
+          size="large"
+          defaultValue="지역 선택"
+          placeholder="지역 선택"
+          style={{ width: 435 }}
           onChange={onChange}
           value={form.area}
-        />
-        <StyledInput
-          autoComplete="school"
+        >
+          <Option value="1">강남구</Option>
+          <Option value="2">강동구</Option>
+        </StyledSelect>
+        <LabelMargin for="school">학교 선택</LabelMargin>
+        <StyledSelect
           name="school"
-          placeholder="학교"
+          size="large"
+          defaultValue="학교 선택"
+          placeholder="학교 선택"
+          style={{ width: 435 }}
           onChange={onChange}
           value={form.school}
-        />
+        >
+          <Option value="1">휘문고등학교</Option>
+          <Option value="2">샛별고등학교</Option>
+        </StyledSelect>
+        <ApplyLink>
+          <Link to="/apply">재학 중인 학교가 없으신가요? 학교 등록하기</Link>
+        </ApplyLink>
         <ButtonWithMarginTop fullWidth>회원가입</ButtonWithMarginTop>
       </form>
       <Footer>
