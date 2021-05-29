@@ -67,7 +67,14 @@ const ButtonWithMarginTop = styled(Button)`
   margin-top: 1.5rem;
 `;
 
-const RegisterForm = ({ form, onChange, onSubmit }) => {
+const RegisterForm = ({
+  form,
+  schools,
+  onChange,
+  onChangeArea,
+  onChangeSchool,
+  onSubmit,
+}) => {
   return (
     <RegisterFormBlock>
       <h3>회원가입</h3>
@@ -102,11 +109,34 @@ const RegisterForm = ({ form, onChange, onSubmit }) => {
           defaultValue="지역 선택"
           placeholder="지역 선택"
           style={{ width: 435 }}
-          onChange={onChange}
+          onChange={onChangeArea}
           value={form.area}
         >
-          <Option value="1">강남구</Option>
-          <Option value="2">강동구</Option>
+          <Option value="1">중구</Option>
+          <Option value="2">종로구</Option>
+          <Option value="3">용산구</Option>
+          <Option value="4">은평구</Option>
+          <Option value="5">서대문구</Option>
+          <Option value="6">마포구</Option>
+          <Option value="7">광진구</Option>
+          <Option value="8">성동구</Option>
+          <Option value="9">중랑구</Option>
+          <Option value="10">동대문구</Option>
+          <Option value="11">성북구</Option>
+          <Option value="12">도봉구</Option>
+          <Option value="13">강북구</Option>
+          <Option value="14">노원구</Option>
+          <Option value="15">강서구</Option>
+          <Option value="16">구로구</Option>
+          <Option value="17">영등포구</Option>
+          <Option value="18">동작구</Option>
+          <Option value="19">관악구</Option>
+          <Option value="20">금천구</Option>
+          <Option value="21">양천구</Option>
+          <Option value="22">강남구</Option>
+          <Option value="23">서초구</Option>
+          <Option value="24">송파구</Option>
+          <Option value="25">강동구</Option>
         </StyledSelect>
         <LabelMargin for="school">학교 선택</LabelMargin>
         <StyledSelect
@@ -115,11 +145,12 @@ const RegisterForm = ({ form, onChange, onSubmit }) => {
           defaultValue="학교 선택"
           placeholder="학교 선택"
           style={{ width: 435 }}
-          onChange={onChange}
+          onChange={onChangeSchool}
           value={form.school}
         >
-          <Option value="1">휘문고등학교</Option>
-          <Option value="2">샛별고등학교</Option>
+          {schools.forEach((item) => {
+            <Option value={item.name}>{item.name}</Option>;
+          })}
         </StyledSelect>
         <ApplyLink>
           <Link to="/apply">재학 중인 학교가 없으신가요? 학교 등록하기</Link>

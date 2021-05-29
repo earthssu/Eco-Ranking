@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, register } from '../../modules/auth';
+import { changeField, initializeForm } from '../../modules/auth';
 import RegisterForm from '../../components/auth/RegisterForm';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 const RegisterContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
+  const { form } = useSelector(({ auth }) => ({
     form: auth.register,
-    auth: auth.auth,
-    authError: auth.authError,
-    user: user.user,
   }));
+  const [schools, setSchools] = useState([]);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -24,13 +23,64 @@ const RegisterContainer = ({ history }) => {
     );
   };
 
+  const onChangeArea = (e) => {
+    console.log(e);
+    dispatch(
+      changeField({
+        form: 'register',
+        key: 'area',
+        value: e,
+      }),
+    );
+  };
+
+  const onChangeSchool = (e) => {
+    dispatch(
+      changeField({
+        form: 'register',
+        key: 'school',
+        value: e,
+      }),
+    );
+  };
+
+  const getSchools = () => {
+    axios.get('http://localhost:8000/auth/schools').then((res) => {
+      setSchools(res.data);
+    });
+  };
+
+  const authRegister = ({
+    username,
+    password,
+    passwordConfirm,
+    area,
+    school,
+  }) => {
+    axios
+      .post('http://localhost:8000/auth/register/', {
+        username,
+        password,
+        passwordConfirm,
+        area,
+        school,
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password, passwordConfirm, area, school } = form;
     if (password !== passwordConfirm) {
       return;
     }
-    dispatch(register({ username, password, passwordConfirm, area, school }));
+    authRegister({ username, password, passwordConfirm, area, school });
   };
 
   useEffect(() => {
@@ -38,29 +88,19 @@ const RegisterContainer = ({ history }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
-      return;
-    }
-    if (auth) {
-      console.log('회원가입 성공');
-      console.log(auth);
-    }
-  }, [auth, authError, dispatch]);
+    getSchools();
+  }, []);
 
-  useEffect(() => {
-    if (user) {
-      history.push('/');
-      try {
-        localStorage.setItem('user', JSON.stringify(user));
-      } catch (e) {
-        console.log('localstorage is not working');
-      }
-    }
-  }, [history, user]);
-
-  return <RegisterForm form={form} onChange={onChange} onSubmit={onSubmit} />;
+  return (
+    <RegisterForm
+      form={form}
+      schools={schools}
+      onChange={onChange}
+      onChangeArea={onChangeArea}
+      onChangeSchool={onChangeSchool}
+      onSubmit={onSubmit}
+    />
+  );
 };
 
 export default withRouter(RegisterContainer);

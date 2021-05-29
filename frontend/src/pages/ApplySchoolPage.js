@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthTemplate from '../components/auth/AuthTemplate';
-import ApplySchoolForm from '../components/auth/ApplySchoolForm';
+import ApplySchoolContainer from '../containers/auth/ApplySchoolContainer';
 import { Helmet } from 'react-helmet-async';
 
 const ApplySchoolPage = () => {
@@ -9,7 +9,7 @@ const ApplySchoolPage = () => {
       <Helmet>
         <title>학교 등록하기 - Eco Ranking</title>
       </Helmet>
-      <ApplySchoolForm />
+      <ApplySchoolContainer />
     </AuthTemplate>
   );
 };
