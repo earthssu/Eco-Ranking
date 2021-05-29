@@ -88,19 +88,19 @@ const RegisterForm = ({
         />
         <StyledInput
           autoComplete="new-password"
-          name="password"
+          name="password1"
           placeholder="비밀번호"
           type="password"
           onChange={onChange}
-          value={form.password}
+          value={form.password1}
         />
         <StyledInput
           autoComplete="new-password"
-          name="passwordConfirm"
+          name="password2"
           placeholder="비밀번호 확인"
           type="password"
           onChange={onChange}
-          value={form.passwordConfirm}
+          value={form.password2}
         />
         <LabelMargin for="area">지역 선택</LabelMargin>
         <StyledSelect
@@ -112,31 +112,31 @@ const RegisterForm = ({
           onChange={onChangeArea}
           value={form.area}
         >
-          <Option value="1">중구</Option>
-          <Option value="2">종로구</Option>
-          <Option value="3">용산구</Option>
-          <Option value="4">은평구</Option>
-          <Option value="5">서대문구</Option>
-          <Option value="6">마포구</Option>
-          <Option value="7">광진구</Option>
-          <Option value="8">성동구</Option>
-          <Option value="9">중랑구</Option>
-          <Option value="10">동대문구</Option>
-          <Option value="11">성북구</Option>
-          <Option value="12">도봉구</Option>
-          <Option value="13">강북구</Option>
-          <Option value="14">노원구</Option>
-          <Option value="15">강서구</Option>
-          <Option value="16">구로구</Option>
-          <Option value="17">영등포구</Option>
-          <Option value="18">동작구</Option>
-          <Option value="19">관악구</Option>
-          <Option value="20">금천구</Option>
-          <Option value="21">양천구</Option>
-          <Option value="22">강남구</Option>
-          <Option value="23">서초구</Option>
-          <Option value="24">송파구</Option>
-          <Option value="25">강동구</Option>
+          <Option value="중구">중구</Option>
+          <Option value="종로구">종로구</Option>
+          <Option value="용산구">용산구</Option>
+          <Option value="은평구">은평구</Option>
+          <Option value="서대문구">서대문구</Option>
+          <Option value="마포구">마포구</Option>
+          <Option value="광진구">광진구</Option>
+          <Option value="성동구">성동구</Option>
+          <Option value="중랑구">중랑구</Option>
+          <Option value="동대문구">동대문구</Option>
+          <Option value="성북구">성북구</Option>
+          <Option value="도봉구">도봉구</Option>
+          <Option value="강북구">강북구</Option>
+          <Option value="노원구">노원구</Option>
+          <Option value="강서구">강서구</Option>
+          <Option value="구로구">구로구</Option>
+          <Option value="영등포구">영등포구</Option>
+          <Option value="동작구">동작구</Option>
+          <Option value="관악구">관악구</Option>
+          <Option value="금천구">금천구</Option>
+          <Option value="양천구">양천구</Option>
+          <Option value="강남구">강남구</Option>
+          <Option value="서초구">서초구</Option>
+          <Option value="송파구">송파구</Option>
+          <Option value="강동구">강동구</Option>
         </StyledSelect>
         <LabelMargin for="school">학교 선택</LabelMargin>
         <StyledSelect
