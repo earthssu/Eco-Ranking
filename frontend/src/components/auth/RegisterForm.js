@@ -88,19 +88,19 @@ const RegisterForm = ({
         />
         <StyledInput
           autoComplete="new-password"
-          name="password"
+          name="password1"
           placeholder="비밀번호"
           type="password"
           onChange={onChange}
-          value={form.password}
+          value={form.password1}
         />
         <StyledInput
           autoComplete="new-password"
-          name="passwordConfirm"
+          name="password2"
           placeholder="비밀번호 확인"
           type="password"
           onChange={onChange}
-          value={form.passwordConfirm}
+          value={form.password2}
         />
         <LabelMargin for="area">지역 선택</LabelMargin>
         <StyledSelect

@@ -71,9 +71,7 @@ const RegisterContainer = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { username, password, passwordConfirm, area, school } = form;
-    const password1 = password;
-    const password2 = passwordConfirm;
+    const { username, password1, password2, area, school } = form;
     authRegister({ username, password1, password2, area, school });
   };
 
