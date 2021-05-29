@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const RegisterContainer = ({ history }) => {
   const [area, setArea] = useState('');
-  const [school, setSchool] = useState('');
+  const [name, setSchool] = useState('');
 
   const onChangeSchool = (e) => {
     console.log(e.target.value);
@@ -17,11 +17,11 @@ const RegisterContainer = ({ history }) => {
     setArea(e);
   };
 
-  const applySchool = ({ area, school }) => {
+  const applySchool = ({ area, name }) => {
     axios
       .post('http://localhost:8000/schools/', {
         area,
-        school,
+        name,
       })
       .then((res) => {
         console.log(res.data);
@@ -34,7 +34,7 @@ const RegisterContainer = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    applySchool({ area, school });
+    applySchool({ area, name });
   };
 
   return (
