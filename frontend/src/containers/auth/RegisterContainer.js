@@ -46,8 +46,8 @@ const RegisterContainer = ({ history }) => {
 
   const getSchools = () => {
     axios.get('http://localhost:8000/schools').then((res) => {
-      console.log(res.data);
       setSchools(res.data);
+      console.log(schools);
     });
   };
 

@@ -148,9 +148,10 @@ const RegisterForm = ({
           onChange={onChangeSchool}
           value={form.school}
         >
-          {schools.forEach((item) => {
-            <Option value={item.name}>{item.name}</Option>;
-          })}
+          {schools &&
+            schools.map((item) => (
+              <Option value={item.name}>{item.name}</Option>
+            ))}
         </StyledSelect>
         <ApplyLink>
           <Link to="/apply">재학 중인 학교가 없으신가요? 학교 등록하기</Link>
