@@ -45,23 +45,18 @@ const RegisterContainer = ({ history }) => {
   };
 
   const getSchools = () => {
-    axios.get('http://localhost:8000/auth/schools').then((res) => {
+    axios.get('http://localhost:8000/schools').then((res) => {
+      console.log(res.data);
       setSchools(res.data);
     });
   };
 
-  const authRegister = ({
-    username,
-    password,
-    passwordConfirm,
-    area,
-    school,
-  }) => {
+  const authRegister = ({ username, password1, password2, area, school }) => {
     axios
       .post('http://localhost:8000/auth/register/', {
         username,
-        password,
-        passwordConfirm,
+        password1,
+        password2,
         area,
         school,
       })
@@ -77,10 +72,9 @@ const RegisterContainer = ({ history }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password, passwordConfirm, area, school } = form;
-    if (password !== passwordConfirm) {
-      return;
-    }
-    authRegister({ username, password, passwordConfirm, area, school });
+    const password1 = password;
+    const password2 = passwordConfirm;
+    authRegister({ username, password1, password2, area, school });
   };
 
   useEffect(() => {
