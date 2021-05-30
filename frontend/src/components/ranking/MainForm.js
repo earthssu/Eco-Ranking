@@ -76,7 +76,7 @@ const ThirdSchoolBlock = styled.div`
 const RecommendBlock = styled.div`
   margin-top: 2rem;
   width: 100%;
-  height: 75%;
+  height: 85%;
   padding: 2.5rem;
   border-radius: 50px 50px;
   background: #fffeec;
@@ -99,7 +99,7 @@ const RecommendListBlock = styled.div`
 `;
 
 const LinkBlock = styled.div`
-  margin-left: 16rem;
+  float: right;
   margin-bottom: 0.7rem;
   a:link {
     color: #2b8568;
@@ -121,18 +121,9 @@ const SchoolRecommendBlock = styled.div`
     font-size: 1rem;
     font-weight: 500;
   }
-  svg {
-    margin-left: 12rem;
-    margin-top: 1rem;
-  }
   a {
-    margin-top: 1rem;
-  }
-  a:link {
-    color: #2b8568;
-  }
-  a:visited {
-    color: #6c8e83;
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 `;
 
@@ -184,14 +175,17 @@ const MainForm = ({ school }) => {
                  더 알아보기
               </a>
             </LinkBlock>
+            <br />
             <SchoolRecommendBlock>
               <h3>탄소 중점 학교 소개</h3>
               <div>
                 탄소 중점 학교란? 초중고 학교의 탄소 중립 실현을 위해 6개 부처가
                 협업해 실천 행동을 지원하는 제도
               </div>
-              <CutomRight />
-              <Link to="/carbonschool">탄소 중점 학교 보기</Link>
+              <LinkBlock>
+                <CutomRight />
+                <Link to="/carbonschool">탄소 중점 학교 보기</Link>
+              </LinkBlock>
             </SchoolRecommendBlock>
           </RecommendBlock>
         </SectionBlock>
