@@ -8,20 +8,6 @@ const { kakao } = window;
 const PollutionContainer = () => {
   const [pollution, setPollution] = useState([]);
 
-  // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-  function makeOverListener(map, polygon, infowindow) {
-    return function () {
-      infowindow.open(map, polygon);
-    };
-  }
-
-  // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-  function makeOutListener(infowindow) {
-    return function () {
-      infowindow.close();
-    };
-  }
-
   useEffect(() => {
     const fetchPollution = async () => {
       try {
@@ -66,31 +52,35 @@ const PollutionContainer = () => {
             fillOpacity: 0.7, // 채우기 불투명도 입니다
           });
 
-          const infowindow = new kakao.maps.InfoWindow({
-            content:
-              '<div style="padding:2px;"><p><b>' +
-              name +
-              '</b></p><p>이산화질소농도: ' +
-              areaResult[1] +
-              '</p><p>오존농도: ' +
-              areaResult[2] +
-              '</p><p>일산화탄소농도: ' +
-              areaResult[3] +
-              '</p><p>아황산가스: ' +
-              areaResult[4] +
-              '</p><p>미세먼지: ' +
-              areaResult[5] +
-              '</p><p>초미세먼지: ' +
-              areaResult[6] +
-              '</div>',
-          });
-
           // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
           // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
           kakao.maps.event.addListener(
             polygon,
             'mouseover',
-            makeOverListener(map, polygon, infowindow),
+            function (mouseEvent) {
+              polygon.setOptions({ fillColor: '#09f' });
+
+              customOverlay.setContent(
+                '<div style="background: #fff; border: 1px solid #888;"><p><b>' +
+                  name +
+                  '</b></p><p>이산화질소농도: ' +
+                  areaResult[1] +
+                  '</p><p>오존농도: ' +
+                  areaResult[2] +
+                  '</p><p>일산화탄소농도: ' +
+                  areaResult[3] +
+                  '</p><p>아황산가스: ' +
+                  areaResult[4] +
+                  '</p><p>미세먼지: ' +
+                  areaResult[5] +
+                  '</p><p>초미세먼지: ' +
+                  areaResult[6] +
+                  '</div>',
+              );
+
+              customOverlay.setPosition(mouseEvent.latLng);
+              customOverlay.setMap(map);
+            },
           );
 
           // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
@@ -104,11 +94,10 @@ const PollutionContainer = () => {
 
           // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
           // 커스텀 오버레이를 지도에서 제거합니다
-          kakao.maps.event.addListener(
-            polygon,
-            'mouseout',
-            makeOutListener(infowindow),
-          );
+          kakao.maps.event.addListener(polygon, 'mouseout', function () {
+            polygon.setOptions({ fillColor: '#fff' });
+            customOverlay.setMap(null);
+          });
         };
 
         data.forEach((val) => {
