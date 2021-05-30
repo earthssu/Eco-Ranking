@@ -6,10 +6,10 @@ import RegisterPage from './pages/RegisterPage';
 import MainPage from './pages/MainPage';
 import RankingPage from './pages/RankingPage';
 import PollutionPage from './pages/PollutionPage';
-import AreaPollutionPage from './pages/AreaPollutionPage';
 import WritePage from './pages/WritePage';
 import CommunityPage from './pages/CommunityPage';
 import ApplySchoolPage from './pages/ApplySchoolPage';
+import CarbonSchoolPage from './pages/CarbonSchoolPage';
 import { Helmet } from 'react-helmet-async';
 
 function App() {
@@ -23,10 +23,10 @@ function App() {
       <Route component={RegisterPage} path="/register" />
       <Route component={RankingPage} path="/ranking" />
       <Route component={PollutionPage} path="/pollution" exact />
-      <Route component={AreaPollutionPage} path="/pollution/:area" />
       <Route component={WritePage} path="/write" />
       <Route component={CommunityPage} path="/community" />
       <Route component={ApplySchoolPage} path="/apply" />
+      <Route component={CarbonSchoolPage} path="/carbonschool" />
     </>
   );
 }
