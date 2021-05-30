@@ -7,19 +7,17 @@ const { kakao } = window;
 
 const PollutionContainer = () => {
   const [pollution, setPollution] = useState([]);
-  const makeOverListener = (map, marker, infoWindow) => {
-    return function () {
-      infoWindow.open(map, marker);
-    };
-  };
 
-  const makeOutListener = (infoWindow) => {
-    return function () {
-      infoWindow.close();
-    };
+  const fetchPollution = () => {
+    axios.get('http://localhost:8000/pollution').then((res) => {
+      setPollution(res.data);
+      console.log(pollution);
+    });
   };
 
   useEffect(() => {
+    fetchPollution();
+
     let data = geojson.features;
     let coordinates = []; //좌표 저장 배열
     let name = ''; //행정구 이름
@@ -39,6 +37,8 @@ const PollutionContainer = () => {
     const displayArea = (coordinates, name) => {
       let path = [];
       let points = [];
+      let areaResult = pollution.filter((item) => item[0] === name);
+      console.log(areaResult);
 
       coordinates[0].forEach((coordinate) => {
         let point = {};
@@ -86,14 +86,21 @@ const PollutionContainer = () => {
 
       // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다
       kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-        var content =
-          '<div class="info">' +
-          '   <div class="title">' +
+        const content =
+          '<div style="padding:2px;"><p><b>' +
           name +
-          '</div>' +
-          '   <div class="size">총 면적 : 약 ' +
-          Math.floor(polygon.getArea()) +
-          ' m<sup>2</sup></area>' +
+          '</b></p><p>이산화질소농도: ' +
+          areaResult[1] +
+          '</p><p>오존농도: ' +
+          areaResult[2] +
+          '</p><p>일산화탄소농도: ' +
+          areaResult[3] +
+          '</p><p>아황산가스: ' +
+          areaResult[4] +
+          '</p><p>미세먼지: ' +
+          areaResult[5] +
+          '</p><p>초미세먼지: ' +
+          areaResult[6] +
           '</div>';
 
         infowindow.setContent(content);
