@@ -32,7 +32,7 @@ for i in range(0, 25):
     no2.append(df['NO2'][i])
     co.append(df['CO'][i])
     so2.append(df['SO2'][i])
-    dic = list(zip(gu, pm10, pm25, o3, no2, co, so2, Lat_list, Lon_list))
+    dic = list(zip(gu, pm10, pm25, o3, no2, co, so2, Lat_list, Lon_list, guScore()))
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -102,7 +102,7 @@ class AreaRankList(APIView):
     def get(self, request):
         area = Area.objects.all()
         sort = sorted(area, key=lambda a: a.score, reverse=True)
-        serializers = SchoolSerializer(sort, many=True)
+        serializers = AreaSerializer(sort, many=True)
         return Response(serializers.data)
 
 

@@ -15,11 +15,9 @@ json_object = json.loads(json_str)
 df = json_normalize(json_object['DailyAverageCityAir']['row'])
 
 
-# 지역 오염도 계산해서 리스트로 반환 ex) ["중구", 18]
-def pollutionLevel():
-    gu, pm10, pm25, o3, no2, co, so2, gu_score, dic = [], [], [], [], [], [], [], [], []
+def guScore():
+    pm10, pm25, o3, no2, co, so2, gu_score, dic = [], [], [], [], [], [], [], []
     for i in range(0, 25):
-        gu.append(Area.objects.all()[i].name)
         pm10.append(round(int(df['PM10'][i]), -1))
         pm25.append(round(int(df['PM25'][i]), -1))
         o3.append(round(int(df['O3'][i] * 1000), -1))
@@ -27,7 +25,15 @@ def pollutionLevel():
         co.append(int(df['CO'][i] * 100))
         so2.append(int(df['SO2'][i] * 10000))
         gu_score.append(int((pm10[i] + pm25[i] + o3[i] + no2[i] + co[i] + so2[i]) / 10))
-        dic = list(zip(gu, gu_score))
+    return gu_score
+
+
+# 지역 오염도 계산해서 리스트로 반환 ex) ["중구", 18]
+def pollutionLevel():
+    gu = []
+    for i in range(0, 25):
+        gu.append(Area.objects.all()[i].name)
+        dic = list(zip(gu, guScore()))
     return dic
 
 
