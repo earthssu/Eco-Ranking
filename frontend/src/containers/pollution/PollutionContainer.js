@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import PollutionForm from '../../components/pollution/PollutionForm';
 import geojson from '../../lib/data/TL_SCCO_SIG_W.json';
@@ -6,14 +6,11 @@ import geojson from '../../lib/data/TL_SCCO_SIG_W.json';
 const { kakao } = window;
 
 const PollutionContainer = () => {
-  const [pollution, setPollution] = useState([]);
-
   useEffect(() => {
     const fetchPollution = async () => {
       try {
         const result = await axios.get('http://localhost:8000/pollution');
-        setPollution(result.data);
-        console.log(pollution);
+        const pollution = result.data;
 
         let data = geojson.features;
         let coordinates = []; //좌표 저장 배열
