@@ -182,6 +182,7 @@ const MainForm = ({ school }) => {
                 탄소 중점 학교란? 초중고 학교의 탄소 중립 실현을 위해 6개 부처가
                 협업해 실천 행동을 지원하는 제도
               </div>
+              <br />
               <LinkBlock>
                 <CutomRight />
                 <Link to="/carbonschool">탄소 중점 학교 보기</Link>
