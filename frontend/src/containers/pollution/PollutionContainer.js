@@ -42,11 +42,11 @@ const PollutionContainer = () => {
           let polygonColor = '';
           if (level < 10) {
             polygonColor = '#45B39D';
-          } else if (10 <= level <= 13) {
+          } else if (10 <= level && level <= 13) {
             polygonColor = '#58D68D';
-          } else if (14 <= level <= 16) {
+          } else if (14 <= level && level <= 16) {
             polygonColor = '#F4D03F';
-          } else if (17 <= level <= 20) {
+          } else if (17 <= level && level <= 20) {
             polygonColor = '#F5B041';
           } else if (21 <= level) {
             polygonColor = '#EC7063';
