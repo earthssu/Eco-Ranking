@@ -38,7 +38,7 @@ const PollutionContainer = () => {
             path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
           });
 
-          const level = areaResult[0][9];
+          const level = parseInt(areaResult[0][9], 10);
           let polygonColor = '';
           if (level < 10) {
             polygonColor = '#45B39D';
