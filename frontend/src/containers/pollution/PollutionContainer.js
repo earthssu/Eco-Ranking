@@ -13,6 +13,7 @@ const PollutionContainer = () => {
       try {
         const result = await axios.get('http://localhost:8000/pollution');
         setPollution(result.data);
+        console.log(pollution);
 
         let data = geojson.features;
         let coordinates = []; //좌표 저장 배열
