@@ -29,7 +29,6 @@ const PollutionContainer = () => {
           let path = [];
           let points = [];
           let areaResult = pollution.filter((item) => item[0] === name);
-          console.log(areaResult);
 
           coordinates[0].forEach((coordinate) => {
             let point = {};
@@ -39,6 +38,20 @@ const PollutionContainer = () => {
             path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
           });
 
+          const level = areaResult[0][9];
+          let polygonColor = '';
+          if (level < 10) {
+            polygonColor = '#45B39D';
+          } else if (10 <= level <= 13) {
+            polygonColor = '#58D68D';
+          } else if (14 <= level <= 16) {
+            polygonColor = '#F4D03F';
+          } else if (17 <= level <= 20) {
+            polygonColor = '#F5B041';
+          } else if (21 <= level) {
+            polygonColor = '#EC7063';
+          }
+
           let polygon = new kakao.maps.Polygon({
             map: map,
             path: path, // 그려질 다각형의 좌표 배열입니다
@@ -46,7 +59,7 @@ const PollutionContainer = () => {
             strokeColor: '#004c80', // 선의 색깔입니다
             strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid', // 선의 스타일입니다
-            fillColor: '#fff', // 채우기 색깔입니다
+            fillColor: polygonColor, // 채우기 색깔입니다
             fillOpacity: 0.7, // 채우기 불투명도 입니다
           });
 
@@ -56,23 +69,21 @@ const PollutionContainer = () => {
             polygon,
             'mouseover',
             function (mouseEvent) {
-              polygon.setOptions({ fillColor: '#09f' });
-
               customOverlay.setContent(
                 '<div style="background: #fff; border: 1px solid #888;"><p><b>' +
                   name +
                   '</b></p><p>이산화질소농도: ' +
-                  areaResult[1] +
+                  areaResult[0][1] +
                   '</p><p>오존농도: ' +
-                  areaResult[2] +
+                  areaResult[0][2] +
                   '</p><p>일산화탄소농도: ' +
-                  areaResult[3] +
+                  areaResult[0][3] +
                   '</p><p>아황산가스: ' +
-                  areaResult[4] +
+                  areaResult[0][4] +
                   '</p><p>미세먼지: ' +
-                  areaResult[5] +
+                  areaResult[0][5] +
                   '</p><p>초미세먼지: ' +
-                  areaResult[6] +
+                  areaResult[0][6] +
                   '</div>',
               );
 
@@ -93,7 +104,6 @@ const PollutionContainer = () => {
           // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
           // 커스텀 오버레이를 지도에서 제거합니다
           kakao.maps.event.addListener(polygon, 'mouseout', function () {
-            polygon.setOptions({ fillColor: '#fff' });
             customOverlay.setMap(null);
           });
         };
