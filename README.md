@@ -5,10 +5,10 @@
 
 # Collaborator
 
-| name   | github                                     |
-| ------ | ------------------------------------------ |
-| 김지수 | [@earthssu](https://github.com/earthssu)   |
-| 최예원 | [@julia-ing](https://github.com/julia-ing) |
+| name   | position  | github                                     |
+| ------ | --------- | ------------------------------------------ |
+| 김지수 | Front-end | [@earthssu](https://github.com/earthssu)   |
+| 최예원 | Back-end  | [@julia-ing](https://github.com/julia-ing) |
 
 ## 주요 기능
 
