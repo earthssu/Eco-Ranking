@@ -29,7 +29,7 @@
 
 학생이 실천한 환경 보호 사례를 기록할 수 있습니다. <br>
 이 게시물은 점수에 반영됩니다.
-![이미지 2021  5  22  오전 4 00](https://user-images.githubusercontent.com/39795055/121210448-a737ff00-c8b6-11eb-9994-16b500fc6c2e.jpg)
+![이미지 2021  5  22  오전 3 46 2](https://user-images.githubusercontent.com/39795055/146790910-291308ff-f507-462c-a4fd-f389e5510f28.jpeg)
 
 ### 시뮬레이션
 
@@ -51,5 +51,4 @@ Map API : KakaoMap API
 ![eco-ranking_erd](https://user-images.githubusercontent.com/39795055/121213528-43fb9c00-c8b9-11eb-9496-aa59ad4c8283.png)
 
 ### API
-
-[REST API 보러 가기](https://www.notion.so/edd2a76797d0414d92e392aa62e5c9a8?v=d6b45f349db045cab3876ac9b9cbc06d)
+<img width="568" alt="스크린샷 2021-12-21 오전 12 25 09" src="https://user-images.githubusercontent.com/39795055/146791385-dbe4e639-0477-4755-be90-dded0cac02cc.png">
